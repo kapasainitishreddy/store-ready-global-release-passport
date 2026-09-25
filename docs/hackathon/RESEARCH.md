@@ -15,7 +15,7 @@ Research checked September 25, 2026. The prior May 2026 IBM Bob Hackathon had 50
 2. Show one working vertical slice: choose app → choose country/locale → prepare a store/SEO plan → inspect a source-backed security finding → use Bob to make a real reviewed code change → rerun a reproducible check.
 3. Make Bob part of real development work. Use it on a focused issue, capture the true diff and test output, and retain each member's authentic Bob session-summary screenshot.
 4. Make one visual moment memorable: compare the same product across country/store plans and show exactly which locale copy/assets/evidence is incomplete.
-5. Prioritize reproducibility and proof over claims of global completeness. The current prototype offers six sample markets and planning templates, not worldwide law/store coverage, live keyword data, translation, or store publishing.
+5. Prioritize reproducibility and proof over claims of global completeness. The current prototype offers a searchable CLDR catalogue of 257 countries and territories with planning templates and 585 locale suggestions; it does not verify worldwide law or store coverage, live keyword data, translation, or store publishing.
 
 ## Sources
 
