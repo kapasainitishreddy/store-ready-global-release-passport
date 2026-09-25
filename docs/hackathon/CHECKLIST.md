@@ -8,7 +8,7 @@ Record the verified release-candidate commit before submission. The parent Store
 
 - [x] Project title: **ReleaseProof by StoreReady**.
 - [x] Short description and Problem & Solution Statement drafted in `SUBMISSION.md`; keep the long statement at or below 500 words.
-- [ ] Replace the IBM Bob Usage Statement with a factual account of real IBM Bob sessions; keep it at or below 500 words.
+- [x] Replace the IBM Bob Usage Statement with a factual account of the recorded IBM Bob session; keep it at or below 500 words.
 - [x] Technology and category tags listed in `SUBMISSION.md`.
 - [x] MIT license notices are scoped to the new ReleaseProof app, its demo fixtures, Bob workflow materials, and hackathon materials.
 - [x] Review the exact public source bundle and confirm it contains no proprietary StoreReady implementation or private data.
@@ -19,6 +19,7 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Local app starts with `node apps/releaseproof/server.mjs`.
 - [x] Broken fixture shows blockers and redacted source evidence.
 - [x] Workspace keeps app entries separate; apps without a scanner stay **Not audited**.
+- [ ] Connect a real public GitHub repository in the hosted app; confirm the bounded browser scan, unscored result, source references, explicit coverage gaps, and per-app result isolation.
 - [x] Market plans are stored per app and locale; the searchable CLDR 48.2 catalogue provides 257 country/territory profiles and 585 locale options for Play, App Store, Galaxy Store, web SEO, and GitHub release planning. Marketplace availability remains unverified.
 - [x] Locale-specific listing fields, English starter-copy generation, market review tasks, and JSON brief export work locally without sending repository data to a service. Generated search phrases are heuristic suggestions, not keyword research.
 - [ ] Add native translations, current per-store rule sources, and real keyword-volume data before claiming automated localization or market compliance.
@@ -34,11 +35,12 @@ Record the verified release-candidate commit before submission. The parent Store
 
 ## IBM Bob evidence
 
-- [ ] In IBM Bob, review and trust the project folder if you want Bob to use code features; the current folder is in Restricted Mode.
-- [ ] Run genuine IBM Bob sessions against the project using the prompts in `bob/tasks/`, including `08-global-market-readiness.md`.
+- [x] IBM Bob can access the project folder; its Agent mode read source and proposed a reviewed one-file edit.
+- [x] Complete and retain at least one genuine IBM Bob code task. The public GitHub intake timeout task is logged with its exported transcript.
+- [ ] If additional Bob work is claimed, run and document those exact sessions; the prepared prompts alone do not count.
 - [ ] Save an authentic IBM Bob task-session summary screenshot from every participating team member in `docs/hackathon/bob-screenshots/`.
 - [ ] Complete `BOB_USAGE_LOG.md` with session dates, actual modes/features used, tasks, code changes, and results.
-- [ ] Ensure the final IBM Bob Usage Statement matches the retained screenshots and repository changes. Do not count Codex work or the demo prompt builder as Bob usage.
+- [x] Draft an IBM Bob Usage Statement limited to the observed Agent task and retained file change. Recheck it if additional sessions are added.
 
 ## Presentation assets
 

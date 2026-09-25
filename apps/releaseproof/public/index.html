@@ -33,7 +33,7 @@
       </div>
       <div class="sidebar-footer">
         <div class="privacy-lock" aria-hidden="true">⌑</div>
-        <div><strong>Evidence stays scoped</strong><small>Only the local demo fixture is scanned.</small></div>
+        <div><strong>Evidence stays scoped</strong><small>Fixture and bounded public scans.</small></div>
       </div>
     </aside>
 
@@ -52,6 +52,13 @@
         </div>
 
         <div class="notice-bar" id="fixture-notice"><span class="notice-icon" aria-hidden="true">i</span><p><strong>Demo fixture</strong> The connected example is deliberately flawed. No repository is uploaded and no project command runs.</p><a href="#scope" data-view-link="settings">Audit scope</a></div>
+
+        <form class="repo-connect" id="github-repo-form" hidden>
+          <div><strong>Connect a public GitHub repository</strong><p>Read up to 16 small text files from its default branch through GitHub’s API. Results stay in this browser session; no project commands run.</p></div>
+          <label for="github-repo-url">Repository URL</label>
+          <div class="repo-connect-row"><input id="github-repo-url" type="url" inputmode="url" placeholder="https://github.com/owner/repo" autocomplete="url" required><button class="button secondary" type="submit">Save repository</button></div>
+          <p class="repo-feedback" id="github-repo-feedback" role="status" aria-live="polite"></p>
+        </form>
 
         <section class="app-summary" id="app-summary" aria-live="polite" aria-atomic="true">
           <div class="summary-main"><span class="app-monogram" id="summary-monogram">R</span><div><div class="app-title-line"><h2 id="selected-app-name">ReleaseProof demo</h2><span class="platform-label" id="selected-app-platform">Node.js · local fixture</span></div><p id="selected-app-description">examples/releaseproof/broken-app <span>·</span> Static release profile</p></div></div>
@@ -72,7 +79,7 @@
           <section class="surface evidence-surface spotlight-surface" id="evidence-surface" aria-labelledby="evidence-title">
             <div class="surface-heading"><div><h2 id="evidence-title">Evidence to review</h2><p id="evidence-subtitle">A finding is only useful when you can trace it.</p></div><span class="evidence-count" id="evidence-count">—</span></div>
             <div id="evidence-content" class="evidence-content" aria-live="polite"></div>
-            <div id="evidence-empty" class="evidence-empty" hidden><span class="empty-mark" aria-hidden="true">⌕</span><strong>No audit evidence yet</strong><p>Run the connected demo fixture to inspect real source-linked results.</p></div>
+            <div id="evidence-empty" class="evidence-empty" hidden><span class="empty-mark" aria-hidden="true">⌕</span><strong>No audit evidence yet</strong><p>Connect a public repository or run the included fixture to inspect source-linked results.</p></div>
           </section>
         </div>
 
@@ -93,7 +100,7 @@
       <section class="view" id="view-apps" data-page="apps" hidden>
         <div class="page-heading"><div><h1>Your app portfolio</h1><p>Keep findings and release profiles separated by app.</p></div><button class="button primary" type="button" data-add-app>＋ Add app</button></div>
         <div class="portfolio-list" id="portfolio-list"></div>
-        <div class="explain-band"><strong>Separate by design.</strong><span>Each app has its own platform, repository reference, profile, findings, and audit history. This prototype scans only its local demo fixture; other app entries remain unaudited until a scanner connection is configured.</span></div>
+        <div class="explain-band"><strong>Separate by design.</strong><span>Each app has its own platform, repository reference, findings, and market plans. Connect a public GitHub repository for a bounded static sample, or use the bundled fixture flow.</span></div>
       </section>
 
       <section class="view" id="view-markets" data-page="markets" hidden>
@@ -109,12 +116,12 @@
 
       <section class="view" id="view-reports" data-page="reports" hidden>
         <div class="page-heading"><div><h1>Evidence reports</h1><p>Carry a precise snapshot of what ran, what it found, and what remains unknown.</p></div></div>
-        <div class="reports-layout"><div class="report-intro"><span class="report-illustration" aria-hidden="true">▤</span><h2>Reports belong to an app.</h2><p>Select the connected demo app, run its audit, then export the report with findings, source references, and explicit coverage gaps.</p><button class="button secondary" type="button" data-view-link="overview">Open selected app</button></div><div class="report-exports"><div class="export-row"><span class="export-icon">{ }</span><div><strong>Security report</strong><small>Structured findings and rule evidence</small></div><button class="button secondary" data-export="json" type="button">Export JSON</button></div><div class="export-row"><span class="export-icon">MD</span><div><strong>Release report</strong><small>Human-readable decision and limitations</small></div><button class="button secondary" data-export="md" type="button">Export Markdown</button></div><div class="export-row"><span class="export-icon">HTML</span><div><strong>Evidence page</strong><small>Portable review snapshot</small></div><button class="button secondary" data-export="html" type="button">Export HTML</button></div></div></div>
+        <div class="reports-layout"><div class="report-intro"><span class="report-illustration" aria-hidden="true">▤</span><h2>Reports belong to an app.</h2><p>Select an app, run its available audit, then export the report with findings, source references, and explicit coverage gaps.</p><button class="button secondary" type="button" data-view-link="overview">Open selected app</button></div><div class="report-exports"><div class="export-row"><span class="export-icon">{ }</span><div><strong>Security report</strong><small>Structured findings and rule evidence</small></div><button class="button secondary" data-export="json" type="button">Export JSON</button></div><div class="export-row"><span class="export-icon">MD</span><div><strong>Release report</strong><small>Human-readable decision and limitations</small></div><button class="button secondary" data-export="md" type="button">Export Markdown</button></div><div class="export-row"><span class="export-icon">HTML</span><div><strong>Evidence page</strong><small>Portable review snapshot</small></div><button class="button secondary" data-export="html" type="button">Export HTML</button></div></div></div>
       </section>
 
       <section class="view" id="view-settings" data-page="settings" hidden>
         <div class="page-heading"><div><h1>Audit scope & workspace settings</h1><p>Make coverage and limitations visible before anyone relies on a release decision.</p></div></div>
-        <div class="settings-layout"><section class="surface scope-surface" id="scope"><h2>What this prototype checks</h2><p>The connected demo runs bounded static checks over the included fixture. It does not execute project commands or inspect runtime behavior.</p><div class="scope-list" id="scope-list"></div></section><section class="surface scope-surface"><h2>What it does not certify</h2><p>Compliance obligations depend on the product, data, users, jurisdiction, contracts, and current requirements. This demo does not determine legal compliance or guarantee security.</p><div class="not-assessed"><span>!</span><div><strong>Not assessed means unknown</strong><small>Unavailable scanners and unsupported profiles never count as a pass.</small></div></div><div class="settings-separator"></div><h3>Local demo data</h3><p>App names and platform labels are saved in this browser only. No repository URL, credentials, or source files are uploaded.</p><button class="button secondary" id="clear-local-apps" type="button">Reset demo workspace</button></section></div>
+        <div class="settings-layout"><section class="surface scope-surface" id="scope"><h2>What this prototype checks</h2><p>The fixture flow runs bounded local static checks. Public GitHub scans sample up to 16 small text files and use a narrower profile. Neither executes project commands or inspects runtime behavior.</p><div class="scope-list" id="scope-list"></div></section><section class="surface scope-surface"><h2>What it does not certify</h2><p>Compliance obligations depend on the product, data, users, jurisdiction, contracts, and current requirements. This demo does not determine legal compliance or guarantee security.</p><div class="not-assessed"><span>!</span><div><strong>Not assessed means unknown</strong><small>Unavailable scanners and unsupported profiles never count as a pass.</small></div></div><div class="settings-separator"></div><h3>Local demo data</h3><p>App names, platform labels, and public repository URLs are saved in this browser. Source is fetched directly from GitHub into the browser for each scan; no credentials are requested.</p><button class="button secondary" id="clear-local-apps" type="button">Reset demo workspace</button></section></div>
       </section>
 
       <footer class="page-footer"><span>StoreReady <span class="footer-divider">·</span> Release readiness for every app</span><span>Static demo profile <span class="footer-divider">·</span> No compliance certification</span><span>IBM Bob task prompt <span class="footer-divider">·</span> Human-reviewed changes</span></footer>
@@ -127,7 +134,7 @@
       <p class="modal-copy">Create a separate place for its platform, release profile, findings, and history.</p>
       <label for="app-name">App name</label><input id="app-name" name="name" required maxlength="48" placeholder="e.g. Acme Billing API">
       <label for="app-platform">App type</label><select id="app-platform" name="platform"><option>Android app</option><option>iOS app</option><option>SaaS / API</option><option>Web app</option><option>Desktop app</option></select>
-      <p class="local-note"><span aria-hidden="true">⌑</span> This demo saves app metadata in this browser. It does not connect or scan newly added repositories.</p>
+      <p class="local-note"><span aria-hidden="true">⌑</span> After adding an app, connect its public GitHub repository from its overview.</p>
       <div class="modal-actions"><button class="button secondary" id="cancel-add-app-secondary" type="button">Cancel</button><button class="button primary" type="submit">Add to workspace</button></div>
     </form>
   </dialog>

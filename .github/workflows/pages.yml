@@ -25,6 +25,7 @@ jobs:
           node-version: 22
       - run: node apps/releaseproof/generate-demo-reports.mjs
       - run: node apps/releaseproof/generate-market-catalog.mjs
+      - run: node apps/releaseproof/build-browser-engine.mjs
       - run: node --test apps/releaseproof/test/*.test.mjs
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5

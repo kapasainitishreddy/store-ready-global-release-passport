@@ -15,7 +15,7 @@ function securityHeaders(extra = {}) {
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'no-referrer',
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-    'Content-Security-Policy': "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
+    'Content-Security-Policy': "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
     'Cache-Control': 'no-store',
     ...extra
   };
@@ -73,7 +73,7 @@ export function createReleaseProofServer() {
         const variant = url.searchParams.get('variant') || 'broken';
         return sendJson(response, 200, await auditFixture(variant));
       }
-      const staticFiles = { '/': 'index.html', '/index.html': 'index.html', '/releaseproof.css': 'releaseproof.css', '/releaseproof.js': 'releaseproof.js', '/market-catalog.js': 'market-catalog.js' };
+      const staticFiles = { '/': 'index.html', '/index.html': 'index.html', '/releaseproof.css': 'releaseproof.css', '/releaseproof.js': 'releaseproof.js', '/market-catalog.js': 'market-catalog.js', '/github-repository.js': 'github-repository.js', '/scanner-engine.js': 'scanner-engine.js' };
       const filename = staticFiles[url.pathname];
       if (request.method === 'GET' && filename) {
         const content = await fs.readFile(path.join(publicRoot, filename));

@@ -22,9 +22,9 @@ Say clearly: the prototype can draft English copy from an app summary, but it do
 
 ## 4. Evidence-backed security and release checks
 
-Show the broken local fixture, source-linked redacted credential finding, blocker summary, security profile, and compliance states.
+Show the broken local fixture, source-linked redacted credential finding, blocker summary, security profile, and compliance states. Add the bounded public GitHub repository flow: a real public URL, sampled source, unscored result, and visible coverage gaps.
 
-State the bounded audit scope and that unsupported coverage remains manual review or not assessed.
+State the bounded audit scope and that unsupported coverage remains manual review or not assessed. A public scan is not a whole-repository assessment.
 
 ## 5. IBM Bob: a real reviewed code change
 

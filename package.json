@@ -13,6 +13,7 @@
     "test": "node --test apps/releaseproof/test/*.test.mjs",
     "benchmark": "node apps/releaseproof/benchmark.mjs",
     "build:demo-reports": "node apps/releaseproof/generate-demo-reports.mjs",
-    "build:market-catalog": "node apps/releaseproof/generate-market-catalog.mjs"
+    "build:market-catalog": "node apps/releaseproof/generate-market-catalog.mjs",
+    "build:browser-engine": "node apps/releaseproof/build-browser-engine.mjs"
   }
 }
