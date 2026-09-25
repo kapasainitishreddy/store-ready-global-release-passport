@@ -46,15 +46,15 @@ Record the verified release-candidate commit before submission. The parent Store
 
 - [x] Cover image: `cover.jpg`, captured from the working StoreReady workspace with the connected blocked fixture; market capture in `market-workspace.jpg`.
 - [x] Editable six-slide deck with speaker notes: `slides.pptx`.
-- [ ] Record and upload a narrated video no longer than 3 minutes.
-- [ ] In the video, briefly explain the problem and show the working solution on screen for at least 90 seconds.
-- [ ] Show the real IBM Bob workflow and explain the actual use of Bob; do not substitute task prompts or mockups for a Bob session.
-- [ ] Check narration, screen legibility, public demo and repository URLs, and total video duration before upload.
+- [x] Record a narrated video; [`ReleaseProof-IBM-Bob-Demo.mp4`](ReleaseProof-IBM-Bob-Demo.mp4) is 2:58 (verified with FFprobe), with separate [`DEMO_CAPTIONS.srt`](DEMO_CAPTIONS.srt).
+- [x] Explain the problem and show 158 seconds of real application footage and interaction, above the 90-second minimum.
+- [x] Show the real IBM Bob session and explain the actual one-file timeout fix; a 20-second closing hold shows Bob's applied diff and summarizes its limits.
+- [x] Review representative frames and verify the public demo/repository links and final video runtime. Narration is generated using Microsoft Zira; re-record with a team member if human narration is required.
 
 ## lablab.ai final pass
 
 - [ ] Enter title, short description, long description, IBM Bob Usage Statement, and technology/category tags.
-- [ ] Attach the verified public code repository, authentic Bob session screenshots for each team member, demo platform, working public app URL, cover image, narrated video, and slide presentation.
+- [ ] Attach the verified public code repository, authentic Bob session screenshots for each team member, demo platform, working public app URL, cover image, narrated video, and slide presentation. The video, captions, cover, and deck are present in this repository.
 - [ ] Confirm the public project source uses the scoped MIT notices and that any included file is authorized for public release.
 - [x] Check public repository and demo URLs without GitHub authentication.
 - [ ] Submit before **September 27, 2026 at 11:00 AM ET** and retain the submission confirmation.

@@ -1,0 +1,88 @@
+1
+00:00:00,000 --> 00:00:07,500
+Teams shipping several apps track security, store listings, search details,
+and localized assets in different places.
+
+2
+00:00:07,500 --> 00:00:14,500
+StoreReady gives each product its own workspace.
+ReleaseProof shows a redacted credential finding.
+
+3
+00:00:14,500 --> 00:00:22,000
+Security and compliance views surface work for human review.
+Missing evidence is not a pass.
+
+4
+00:00:22,000 --> 00:00:40,000
+Static signals only: no certification or release guarantee.
+Portfolio apps without repositories remain unaudited.
+
+5
+00:00:40,000 --> 00:00:47,500
+The connected-project scan reads up to 16 small public text files.
+
+6
+00:00:47,500 --> 00:00:56,000
+This unscored result shows source evidence and remaining gaps.
+Repository code is never run.
+
+7
+00:00:56,000 --> 00:01:04,000
+A missing build command is one finding,
+not proof the whole app is secure.
+
+8
+00:01:04,000 --> 00:01:22,000
+PocketLedger stays unaudited until connected separately.
+This bounded scan can be affected by GitHub API limits.
+
+9
+00:01:22,000 --> 00:01:30,000
+Each product keeps its own country and language workspaces.
+Add India Hindi using CLDR-backed suggestions.
+
+10
+00:01:30,000 --> 00:01:38,500
+The hi-IN plan keeps local metadata and launch evidence separate.
+English starter copy is only a draft.
+
+11
+00:01:38,500 --> 00:01:47,000
+Hindi needs native-speaker review.
+Store names here indicate planning, not verified availability.
+
+12
+00:01:47,000 --> 00:02:02,000
+Apple App Store is not applicable to this Android product.
+Catalogue: 257 country and territory profiles, 585 locale suggestions.
+
+13
+00:02:02,000 --> 00:02:10,000
+English starter copy uses the product summary;
+search phrases are suggestions, not keyword research.
+
+14
+00:02:10,000 --> 00:02:18,000
+The broken-to-fixed view is a separate sample fixture replay,
+not a code edit.
+
+15
+00:02:18,000 --> 00:02:27,000
+IBM Bob Agent assisted with a real timeout fix
+in the public GitHub intake.
+
+16
+00:02:27,000 --> 00:02:36,000
+The 12-second deadline now covers reading the response body.
+I reviewed and applied the one-file diff.
+
+17
+00:02:36,000 --> 00:02:38,000
+JavaScript syntax checked afterward.
+Bob did not run project tests.
+
+18
+00:02:38,000 --> 00:02:58,000
+The Bob summary records the request, exact change, and limits.
+This fix is not a full security or compliance audit.

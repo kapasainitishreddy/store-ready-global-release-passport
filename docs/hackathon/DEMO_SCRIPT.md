@@ -1,16 +1,19 @@
-# StoreReady narrated demo script (2:50)
+# ReleaseProof Global Release Passport — recorded demo
 
-Target runtime: **2:50**. Keep the actual application visible and working for at least 120 seconds. Record only after a real IBM Bob session has been completed and captured. The hosted demo URL works for this script; the fixture audit replays scanner-generated snapshots, while the public GitHub scan reads live public source through GitHub's API.
+**Final runtime:** 2:58 (178 seconds). The video contains 158 seconds of real product footage and interaction, followed by a 20-second Bob-session close. Captions are burned in and also provided as a separate `.srt` file. Narration uses the built-in Microsoft Zira speech voice.
 
-| Time | Visual / action | Narration |
+| Time | What appears | Narration focus |
 | --- | --- | --- |
-| 0:00–0:18 | Presenter and StoreReady overview | “Teams release several products into different markets. Security findings, store copy, assets, and local policy reviews get separated. StoreReady gives each product one release workspace.” |
-| 0:18–0:37 | Show app portfolio; add an app for a real public repository | “Every app gets separate findings and launch plans. An unscanned app stays Not audited.” |
-| 0:37–1:00 | Paste the chosen public GitHub repository URL; run audit; show the file-reading progress, unscored result, source-linked evidence, and gaps | “This browser reads a bounded sample from the public default branch. It records the files it could not assess and never calls this a complete security or compliance audit.” |
-| 1:00–1:27 | Open **Markets**; choose PocketLedger, add India Hindi, inspect Play, Galaxy, web, and GitHub surfaces | “Each app keeps separate plans by market, language, and channel. Unicode CLDR helps suggest locales; people still verify actual store availability, translation, local rules, and assets.” |
-| 1:27–1:42 | Edit summary, generate English starter copy, change a listing field, complete a review task, export JSON brief | “The editable draft and brief speed up preparation. Suggested search phrases are not researched rankings, and this does not publish a listing.” |
-| 1:42–2:02 | Return to ReleaseProof fixture; show blocked audit, redacted credential evidence, and compliance map | “The included broken app yields source-linked blockers. The credential-shaped value is redacted. Unsupported legal and store checks remain unknown.” |
-| 2:02–2:37 | Show the **actual IBM Bob IDE session** or its unaltered task-summary capture; point to the reviewed one-file diff and exported transcript | “I used IBM Bob Agent mode to fix a timeout in the public GitHub intake. Bob moved timer cleanup so the twelve-second limit covers the JSON body, too. I reviewed its proposed diff before applying it, then checked the edited file’s JavaScript syntax. Bob did not run our tests or certify the scan.” |
-| 2:37–2:50 | Re-audit or show the reviewed fixture repair and resulting state | “The same static profile shows what changed and what still needs human review. StoreReady keeps the evidence and global release work tied to the right app.” |
+| 0:00–0:40 | ReleaseProof fixture, security and compliance views, app portfolio, StoreReady public demo | Multiple products, separated workspaces, redacted finding, human review, and the rule that unscanned apps stay unaudited. |
+| 0:40–1:22 | Bounded public GitHub scan result and source evidence | Up to 16 small public text files, unscored output, coverage gaps, no code execution, and API limits. |
+| 1:22–2:02 | PocketLedger market planning; India Hindi (`hi-IN`), locale suggestions, store-channel applicability, English starter draft | Localized plans are per app; copy needs human/native-language review; store availability is not verified. |
+| 2:02–2:18 | English starter copy and sample broken-to-fixed fixture replay | Search phrases are suggestions. Fixture replay is separate from a source-code change. |
+| 2:18–2:58 | Actual IBM Bob session result and applied one-file diff, held on screen for the closing explanation | Bob Agent assisted with a timeout fix in the public GitHub intake. The 12-second deadline now covers JSON-body reading. The diff was reviewed and applied; JavaScript syntax was checked afterward. Bob did not run tests, and this change is not a complete security or compliance audit. |
 
-**Recording notes:** Use the owner's real public product repository when supplied; until then the public ReleaseProof repository demonstrates intake honestly. The recorded IBM Bob timeout task and unaltered session capture are in `docs/hackathon/bob-screenshots/`. Capture a separate session-summary screenshot from each participating team member. The scripted fixture switch and browser prompt builder are product features, not Bob usage. Keep at least 90 seconds of the working product visible in the final video.
+## Submission notes
+
+- The captured product footage uses the hosted demo and real browser interactions. It includes more than the required 90 seconds of working application.
+- Narration is synthetic speech, not a human voice recording. Re-record it with a team member if the event requires human narration.
+- The IBM Bob Agent task-summary screenshot and applied-diff screenshot are included in the repository evidence. The transcript records Bob's scope and limitations.
+- The demo uses ReleaseProof's public sample repository because the team's own product repository has not yet been selected.
+- This video does not show every feature or prove that all global regulations, store policies, or security concerns are solved.
