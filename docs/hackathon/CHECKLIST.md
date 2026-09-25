@@ -6,7 +6,7 @@ Record the verified release-candidate commit before submission. The parent Store
 
 ## Product and code
 
-- [x] Project title: **ReleaseProof by StoreReady**.
+- [x] Project title: **StoreReady: Global Release Passport** (aligned with the submission draft, app branding, README, and slides).
 - [x] Short description and Problem & Solution Statement drafted in `SUBMISSION.md`; keep the long statement at or below 500 words.
 - [x] Replace the IBM Bob Usage Statement with a factual account of the recorded IBM Bob session; keep it at or below 500 words.
 - [x] Technology and category tags listed in `SUBMISSION.md`.

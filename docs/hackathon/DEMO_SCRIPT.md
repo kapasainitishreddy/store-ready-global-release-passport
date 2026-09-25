@@ -1,4 +1,4 @@
-# ReleaseProof Global Release Passport — recorded demo
+# StoreReady: Global Release Passport — recorded demo
 
 **Final runtime:** 2:58 (178 seconds). The video contains 158 seconds of real product footage and interaction, followed by a 20-second Bob-session close. Captions are burned in and also provided as a separate `.srt` file. Narration uses the built-in Microsoft Zira speech voice.
 
