@@ -33,7 +33,7 @@ Before submission, run the prompts in `bob/tasks/` in IBM Bob with the actual re
 
 - Platform: GitHub Pages static demo; local Node.js app served by the standalone ReleaseProof demo (`apps/releaseproof/server.mjs`)
 - Local demo: `http://127.0.0.1:4173/` after `node apps/releaseproof/server.mjs`
-- Public working URL: `https://kapasainitishreddy.github.io/store-ready-global-release-passport/` — verify a completed Pages deployment and test while signed out before submission. The hosted audit replays generated fixture-result JSON snapshots; run locally for a fresh scan.
+- Public working URL: `https://kapasainitishreddy.github.io/store-ready-global-release-passport/` — verified on September 25, 2026. The hosted audit replays generated fixture-result JSON snapshots; run locally for a fresh scan.
 
 ## Code repository
 

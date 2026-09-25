@@ -29,7 +29,7 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Root test suite: 331 passed, 0 failed; focused ReleaseProof suite: 7 passed, 0 failed.
 - [x] Fixed demo fixture test and build checks passed locally.
 - [x] Add the GitHub Pages workflow and scanner-derived static fixture snapshots.
-- [ ] Complete the GitHub Pages deployment and verify its URL in a fresh, signed-out browser session.
+- [x] Complete the GitHub Pages deployment and verify its URL and blocked-to-ready demo flow in a fresh browser session.
 - [x] Add the intended public URL and platform to `SUBMISSION.md`; live deployment still needs verification.
 
 ## IBM Bob evidence
@@ -53,5 +53,5 @@ Record the verified release-candidate commit before submission. The parent Store
 - [ ] Enter title, short description, long description, IBM Bob Usage Statement, and technology/category tags.
 - [ ] Attach the verified public code repository, authentic Bob session screenshots for each team member, demo platform, working public app URL, cover image, narrated video, and slide presentation.
 - [ ] Confirm the public project source uses the scoped MIT notices and that any included file is authorized for public release.
-- [ ] Check each link and attachment from a signed-out session.
+- [x] Check public repository and demo URLs without GitHub authentication.
 - [ ] Submit before **September 27, 2026 at 11:00 AM ET** and retain the submission confirmation.

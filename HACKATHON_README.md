@@ -82,7 +82,7 @@ The ReleaseProof demo audit reads only the checked-in sample fixture. It enforce
 
 - **Demo platform:** GitHub Pages static demo plus the standalone local Node.js app in `apps/releaseproof/`.
 - **Working local URL:** `http://127.0.0.1:4173/` while `node apps/releaseproof/server.mjs` is running.
-- **Public working URL:** https://kapasainitishreddy.github.io/store-ready-global-release-passport/ (GitHub Pages deployment must finish and be verified before submission; hosted audit uses scanner-derived fixture snapshots).
+- **Public working URL:** https://kapasainitishreddy.github.io/store-ready-global-release-passport/ (GitHub Pages deployment verified; hosted audit uses scanner-derived fixture snapshots).
 - **Public code repository:** https://github.com/kapasainitishreddy/store-ready-global-release-passport (standalone MIT-scoped package).
 - **License:** the parent StoreReady repository is proprietary (`UNLICENSED`). The isolated ReleaseProof app, sample fixtures, Bob prompts, and hackathon documents have scoped MIT notices. The parent repository itself must remain private unless its rights and license are separately resolved.
 - **IBM Bob screenshots:** not present. Capture authentic session summaries using the steps in [the screenshot guide](docs/hackathon/bob-screenshots/README.md).
