@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Keep every app's security, release checks, and evidence organized in one StoreReady workspace.">
+  <title>StoreReady — Release workspace</title>
+  <link rel="stylesheet" href="./releaseproof.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to workspace</a>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Workspace navigation">
+      <a class="brand" href="#overview" aria-label="StoreReady home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7 4.5h12l6 6V27H7z"/><path d="M19 4.5v6h6M11 17l3 3 7-7"/></svg></span>
+        <span>StoreReady<span class="brand-sub">RELEASE WORKSPACE</span></span>
+      </a>
+      <div class="workspace-switch">
+        <span class="workspace-label">WORKSPACE</span>
+        <button class="workspace-button" id="workspace-button" type="button" aria-label="Workspace Syrava Studio"><span class="workspace-avatar">S</span><span><strong>Syrava Studio</strong><small>Personal workspace</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      </div>
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-link selected" type="button" data-view="overview"><span class="nav-icon" aria-hidden="true">⌂</span>Overview</button>
+        <button class="nav-link" type="button" data-view="apps"><span class="nav-icon" aria-hidden="true">▦</span>Apps<span class="nav-count" id="app-count">3</span></button>
+        <button class="nav-link" type="button" data-view="markets"><span class="nav-icon" aria-hidden="true">◎</span>Markets<span class="nav-count" id="market-count">0</span></button>
+        <button class="nav-link" type="button" data-view="reports"><span class="nav-icon" aria-hidden="true">▤</span>Reports</button>
+        <button class="nav-link" type="button" data-view="settings"><span class="nav-icon" aria-hidden="true">⚙</span>Settings</button>
+      </nav>
+      <div class="side-apps">
+        <div class="side-section-heading"><span>Your apps</span><button class="small-icon-button" id="side-add-app" type="button" aria-label="Add an app">+</button></div>
+        <div id="side-app-list" class="side-app-list"></div>
+      </div>
+      <div class="sidebar-footer">
+        <div class="privacy-lock" aria-hidden="true">⌑</div>
+        <div><strong>Evidence stays scoped</strong><small>Only the local demo fixture is scanned.</small></div>
+      </div>
+    </aside>
+
+    <div class="mobile-overlay" id="mobile-overlay" hidden></div>
+    <main id="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Open navigation">☰</button>
+        <div class="breadcrumbs"><span>Workspace</span><span aria-hidden="true">/</span><strong id="breadcrumb-current">Overview</strong></div>
+        <div class="topbar-actions"><span class="demo-indicator"><i></i> Demo workspace</span><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">◐</button><span class="user-avatar" aria-label="User: S">S</span></div>
+      </header>
+
+      <section class="view active" id="view-overview" data-page="overview">
+        <div class="page-heading">
+          <div><h1>Release health, across every app.</h1><p>Keep each product’s checks, risks, and evidence in its own place.</p></div>
+          <div class="page-actions"><button class="button secondary" id="add-app" type="button"><span aria-hidden="true">＋</span> Add app</button><button class="button secondary" id="switch-to-broken" type="button" hidden>Switch to broken fixture</button><button class="button primary" id="run-audit" type="button"><span aria-hidden="true">↻</span> Run audit</button></div>
+        </div>
+
+        <div class="notice-bar" id="fixture-notice"><span class="notice-icon" aria-hidden="true">i</span><p><strong>Demo fixture</strong> The connected example is deliberately flawed. No repository is uploaded and no project command runs.</p><a href="#scope" data-view-link="settings">Audit scope</a></div>
+
+        <section class="app-summary" id="app-summary" aria-live="polite" aria-atomic="true">
+          <div class="summary-main"><span class="app-monogram" id="summary-monogram">R</span><div><div class="app-title-line"><h2 id="selected-app-name">ReleaseProof demo</h2><span class="platform-label" id="selected-app-platform">Node.js · local fixture</span></div><p id="selected-app-description">examples/releaseproof/broken-app <span>·</span> Static release profile</p></div></div>
+          <div class="summary-decision" id="summary-decision"><span class="decision-dot" id="decision-dot"></span><div><strong id="decision-title">Loading audit…</strong><small id="decision-description">Reading the bounded local fixture.</small></div></div>
+          <div class="summary-score"><span>Readiness</span><strong id="score">—<small>/100</small></strong><div class="score-track"><i id="score-fill"></i></div></div>
+          <div class="summary-counts"><div><strong class="red" id="blocker-count">—</strong><span>blockers</span></div><div><strong class="amber" id="warning-count">—</strong><span>warnings</span></div><div><strong class="muted-count" id="gap-count">—</strong><span>not assessed</span></div></div>
+        </section>
+
+        <div class="profile-bar"><div class="profile-title"><span class="profile-icon" aria-hidden="true">◈</span><div><strong>Audit profile</strong><small>Choose a lens for this release</small></div></div><div class="profile-tabs" role="tablist" aria-label="Audit profile"><button class="profile-tab selected" type="button" role="tab" aria-selected="true" data-profile="release">Release checks</button><button class="profile-tab" type="button" role="tab" aria-selected="false" data-profile="security">Security</button><button class="profile-tab" type="button" role="tab" aria-selected="false" data-profile="compliance">Compliance map</button></div><span class="profile-footnote" id="profile-footnote">Static checks · evidence linked to source</span></div>
+
+        <div class="review-grid">
+          <section class="surface requirements-surface" aria-labelledby="requirements-title">
+            <div class="surface-heading"><div><h2 id="requirements-title">Release checks</h2><p id="requirements-subtitle">What this profile actually checked</p></div><span id="check-summary" class="surface-meta">—</span></div>
+            <div id="requirements-list" class="requirements-list" aria-live="polite"></div>
+            <details class="all-checks"><summary>View individual checks and coverage</summary><div id="check-list"></div></details>
+          </section>
+
+          <section class="surface evidence-surface spotlight-surface" id="evidence-surface" aria-labelledby="evidence-title">
+            <div class="surface-heading"><div><h2 id="evidence-title">Evidence to review</h2><p id="evidence-subtitle">A finding is only useful when you can trace it.</p></div><span class="evidence-count" id="evidence-count">—</span></div>
+            <div id="evidence-content" class="evidence-content" aria-live="polite"></div>
+            <div id="evidence-empty" class="evidence-empty" hidden><span class="empty-mark" aria-hidden="true">⌕</span><strong>No audit evidence yet</strong><p>Run the connected demo fixture to inspect real source-linked results.</p></div>
+          </section>
+        </div>
+
+        <section class="apps-section" aria-labelledby="apps-title">
+          <div class="section-heading"><div><h2 id="apps-title">Your apps</h2><p>One workspace, separate release history and findings for each product.</p></div><button class="link-button" type="button" data-view-link="apps">Manage apps <span aria-hidden="true">→</span></button></div>
+          <div class="apps-table-wrap"><table class="apps-table"><thead><tr><th>App</th><th>Platform</th><th>Release state</th><th>Coverage</th><th></th></tr></thead><tbody id="apps-table-body"></tbody></table></div>
+        </section>
+
+        <section class="bob-panel" aria-labelledby="bob-title"><div class="bob-symbol" aria-hidden="true">✳</div><div class="bob-copy"><h2 id="bob-title">Review a fix with IBM Bob</h2><p>Prepare a prompt from the selected finding, inspect Bob’s real code diff, then rerun the same checks.</p><small>Bob is a development tool; it does not run inside this demo.</small></div><div class="bob-actions"><button class="button secondary" id="bob-prompt" type="button">Prepare Bob task</button><button class="button text-action" id="review-diff" type="button">Review fixture diff <span aria-hidden="true">→</span></button></div></section>
+
+        <section class="detail-panel" id="fix-detail" hidden>
+          <div class="detail-heading"><div><span class="detail-kicker" id="detail-kicker">REVIEW BEFORE CHANGE</span><h2 id="detail-title">Review change</h2></div><button class="small-icon-button" id="close-detail" type="button" aria-label="Close details">×</button></div>
+          <p id="detail-copy"></p><pre id="diff-content" class="diff-view" hidden></pre><textarea id="bob-task" readonly aria-label="IBM Bob task prompt" hidden></textarea>
+          <div class="detail-actions"><p id="detail-disclaimer"></p><div><button class="button secondary" id="copy-detail" type="button" hidden>Copy task</button><button class="button primary" id="apply-demo-fix" type="button" hidden>Apply reviewed demo fixture</button></div></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-apps" data-page="apps" hidden>
+        <div class="page-heading"><div><h1>Your app portfolio</h1><p>Keep findings and release profiles separated by app.</p></div><button class="button primary" type="button" data-add-app>＋ Add app</button></div>
+        <div class="portfolio-list" id="portfolio-list"></div>
+        <div class="explain-band"><strong>Separate by design.</strong><span>Each app has its own platform, repository reference, profile, findings, and audit history. This prototype scans only its local demo fixture; other app entries remain unaudited until a scanner connection is configured.</span></div>
+      </section>
+
+      <section class="view" id="view-markets" data-page="markets" hidden>
+        <div class="page-heading"><div><span class="eyebrow">GLOBAL LAUNCH DESK</span><h1>One product. Every market.</h1><p>Prepare each app’s store listing, local search metadata, and launch evidence by country and channel.</p></div><div class="page-actions"><button class="button secondary" id="market-brief" type="button">Export market brief</button><button class="button primary" id="add-market" type="button">＋ Add market</button></div></div>
+        <div class="market-banner"><span class="market-banner-icon" aria-hidden="true">◎</span><div><strong id="market-app-title">ReleaseProof demo</strong><p>Market plans are separate for each app. Nothing is published to a store; local copy still needs native-speaker, legal, and store-policy review.</p></div><button class="text-button" type="button" data-view-link="apps">Switch app →</button></div>
+        <section class="market-kpis" aria-label="Market plan summary"><article class="market-kpi"><span>Target markets</span><strong id="market-total">0</strong><small>for this app</small></article><article class="market-kpi"><span>Store surfaces</span><strong>5</strong><small>Play · App Store · Galaxy · web · GitHub</small></article><article class="market-kpi"><span>Listing fields drafted</span><strong id="market-fields-total">0</strong><small>locale-specific metadata</small></article><article class="market-kpi attention"><span>Evidence to review</span><strong id="market-gaps-total">0</strong><small>assets, privacy, and policies</small></article></section>
+        <div class="markets-layout">
+          <section class="surface market-list-surface"><div class="surface-heading"><div><h2>Launch markets</h2><p>Choose a country to work on its localized package.</p></div><label class="market-picker-label" for="market-picker">ACTIVE MARKET</label></div><div class="market-list" id="market-list" role="list"></div><div class="market-empty" id="market-empty" hidden><span aria-hidden="true">◎</span><strong>No launch markets yet</strong><p>Add a country to start a localized store and SEO plan for this app.</p></div></section>
+          <section class="surface market-work-surface" aria-labelledby="market-work-title"><div class="surface-heading"><div><h2 id="market-work-title">Market package</h2><p id="market-work-subtitle">Select a market to review its launch work.</p></div><span id="market-progress" class="surface-meta">Not started</span></div><div id="market-work"></div></section>
+        </div>
+        <div class="market-limits"><strong>Evidence-led by design</strong><span>Store requirements, SEO rules, and legal obligations change by platform and market. StoreReady tracks the evidence you attach and marks unknowns; it does not guarantee approval or compliance.</span></div>
+      </section>
+
+      <section class="view" id="view-reports" data-page="reports" hidden>
+        <div class="page-heading"><div><h1>Evidence reports</h1><p>Carry a precise snapshot of what ran, what it found, and what remains unknown.</p></div></div>
+        <div class="reports-layout"><div class="report-intro"><span class="report-illustration" aria-hidden="true">▤</span><h2>Reports belong to an app.</h2><p>Select the connected demo app, run its audit, then export the report with findings, source references, and explicit coverage gaps.</p><button class="button secondary" type="button" data-view-link="overview">Open selected app</button></div><div class="report-exports"><div class="export-row"><span class="export-icon">{ }</span><div><strong>Security report</strong><small>Structured findings and rule evidence</small></div><button class="button secondary" data-export="json" type="button">Export JSON</button></div><div class="export-row"><span class="export-icon">MD</span><div><strong>Release report</strong><small>Human-readable decision and limitations</small></div><button class="button secondary" data-export="md" type="button">Export Markdown</button></div><div class="export-row"><span class="export-icon">HTML</span><div><strong>Evidence page</strong><small>Portable review snapshot</small></div><button class="button secondary" data-export="html" type="button">Export HTML</button></div></div></div>
+      </section>
+
+      <section class="view" id="view-settings" data-page="settings" hidden>
+        <div class="page-heading"><div><h1>Audit scope & workspace settings</h1><p>Make coverage and limitations visible before anyone relies on a release decision.</p></div></div>
+        <div class="settings-layout"><section class="surface scope-surface" id="scope"><h2>What this prototype checks</h2><p>The connected demo runs bounded static checks over the included fixture. It does not execute project commands or inspect runtime behavior.</p><div class="scope-list" id="scope-list"></div></section><section class="surface scope-surface"><h2>What it does not certify</h2><p>Compliance obligations depend on the product, data, users, jurisdiction, contracts, and current requirements. This demo does not determine legal compliance or guarantee security.</p><div class="not-assessed"><span>!</span><div><strong>Not assessed means unknown</strong><small>Unavailable scanners and unsupported profiles never count as a pass.</small></div></div><div class="settings-separator"></div><h3>Local demo data</h3><p>App names and platform labels are saved in this browser only. No repository URL, credentials, or source files are uploaded.</p><button class="button secondary" id="clear-local-apps" type="button">Reset demo workspace</button></section></div>
+      </section>
+
+      <footer class="page-footer"><span>StoreReady <span class="footer-divider">·</span> Release readiness for every app</span><span>Static demo profile <span class="footer-divider">·</span> No compliance certification</span><span>IBM Bob task prompt <span class="footer-divider">·</span> Human-reviewed changes</span></footer>
+    </main>
+  </div>
+
+  <dialog class="modal" id="add-app-modal" aria-labelledby="add-app-title">
+    <form id="add-app-form" method="dialog">
+      <div class="modal-heading"><div><span class="modal-kicker">WORKSPACE</span><h2 id="add-app-title">Add an app</h2></div><button class="small-icon-button" id="cancel-add-app" type="button" aria-label="Close">×</button></div>
+      <p class="modal-copy">Create a separate place for its platform, release profile, findings, and history.</p>
+      <label for="app-name">App name</label><input id="app-name" name="name" required maxlength="48" placeholder="e.g. Acme Billing API">
+      <label for="app-platform">App type</label><select id="app-platform" name="platform"><option>Android app</option><option>iOS app</option><option>SaaS / API</option><option>Web app</option><option>Desktop app</option></select>
+      <p class="local-note"><span aria-hidden="true">⌑</span> This demo saves app metadata in this browser. It does not connect or scan newly added repositories.</p>
+      <div class="modal-actions"><button class="button secondary" id="cancel-add-app-secondary" type="button">Cancel</button><button class="button primary" type="submit">Add to workspace</button></div>
+    </form>
+  </dialog>
+  <dialog class="modal" id="add-market-modal" aria-labelledby="add-market-title">
+    <form id="add-market-form" method="dialog">
+      <div class="modal-heading"><div><span class="modal-kicker">GLOBAL LAUNCH DESK</span><h2 id="add-market-title">Add a launch market</h2></div><button class="small-icon-button" id="close-market-modal" type="button" aria-label="Close">×</button></div>
+      <p class="modal-copy">Create a country-specific workspace for store copy, SEO, localized assets, and release evidence.</p>
+      <label for="market-country">Country / market</label><select id="market-country" name="market" required></select>
+      <p class="local-note"><span aria-hidden="true">i</span> This adds a local planning checklist. It does not determine applicable law or publish a listing.</p>
+      <div class="modal-actions"><button class="button secondary" id="cancel-market" type="button">Cancel</button><button class="button primary" type="submit">Add market plan</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./releaseproof.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "releaseproof-fixed-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "build": "node --check src/server.mjs"
+  }
+}

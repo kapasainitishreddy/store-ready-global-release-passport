@@ -1,0 +1,16 @@
+{
+  "name": "releaseproof-global-release-passport",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Local-first multi-app release workspace with per-market planning and evidence-linked static checks",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node apps/releaseproof/server.mjs",
+    "test": "node --test apps/releaseproof/test/*.test.mjs",
+    "benchmark": "node apps/releaseproof/benchmark.mjs"
+  }
+}

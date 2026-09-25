@@ -1,0 +1,33 @@
+# StoreReady — Global Release Passport
+
+StoreReady helps a team keep multiple apps' launch work separate while organizing release evidence and market plans in one workspace. The prototype combines a bounded static audit of one included Node.js fixture with per-app launch planning across five channels: Google Play, Apple App Store, Samsung Galaxy Store, web SEO, and GitHub Releases.
+
+The market view contains six starter country/locale choices: United States, United Kingdom, India, Brazil, Germany, and Japan. Listing/search fields are editable planning drafts. Checklists track asset adaptation, privacy review, local research, and store-policy review. Plans save in this browser and can be exported as JSON.
+
+## Run
+
+Requires Node.js 22.5 or newer. No dependencies need to be installed.
+
+```sh
+npm start
+```
+
+Open <http://127.0.0.1:4173/>. The ReleaseProof demo app scans only the bundled deliberately broken fixture. Other sample apps stay **Not audited**. Switch to **Markets**, select PocketLedger, and compare the US, India, and Japan plan surfaces. App/platform mismatches such as Apple App Store for an Android-only app are marked not applicable.
+
+![Market planning workspace](docs/hackathon/market-workspace.jpg)
+
+## Verify
+
+```sh
+npm test
+```
+
+The static profile does not execute project commands or connect to arbitrary repositories. The prototype does not provide translated copy, generated artwork, researched keyword volume, exhaustive country coverage, current legal conclusions, compliance certification, or store publishing. It is not an exhaustive security scanner and does not guarantee that all security or compliance issues are solved.
+
+## IBM Bob
+
+The `bob/tasks/` directory contains scoped task prompts. Prompts are not evidence that IBM Bob was used. The submission usage log and per-member task-session screenshots must be completed only after real IBM Bob sessions. The app's prompt builder does not invoke Bob.
+
+## License
+
+The files in this standalone package are MIT-licensed. It contains only the ReleaseProof hackathon addition, its demo fixtures, Bob workflow materials, and hackathon submission files. The parent StoreReady implementation is proprietary and is not included.
