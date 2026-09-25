@@ -1,6 +1,6 @@
 # lablab.ai submission draft
 
-Use [CHECKLIST.md](CHECKLIST.md) to finish and verify the items that still require a completed hosted deployment, genuine IBM Bob session evidence, and a recorded video.
+Use the submission-package checklist and `docs/hackathon/CHECKLIST.md` in the public repository to track the remaining lablab.ai account and team-evidence steps. The public demo, source repository, Bob session evidence, video, and slides are prepared.
 
 ## Project title
 
@@ -20,7 +20,7 @@ The prototype does not scan private repositories or complete codebases, connect 
 
 ## IBM Bob Usage Statement
 
-We used IBM Bob's Agent mode in the open StoreReady repository for a scoped public-repository intake fix. Bob read `apps/releaseproof/public/github-repository.js`, identified that the 12-second request timer ended when response headers arrived, proposed a one-file diff, and explained how a slow JSON body could remain unbounded. A team operator reviewed and approved that diff once. Bob moved timer cleanup to an outer `finally` that covers both the request and JSON body read, and added a specific timeout message for an aborted body read. We retained Bob's completed-task screenshot and exported session transcript in `docs/hackathon/bob-screenshots/`. The edited file was checked for JavaScript syntax after the Bob session. Bob did not run project tests or a build for this task. This fix improves one failure path in the bounded public scan; it does not provide full repository security or compliance coverage.
+IBM Bob's Agent mode was used in the open StoreReady repository for a scoped public-repository intake fix. Bob read `apps/releaseproof/public/github-repository.js`, identified that the 12-second request timer ended when response headers arrived, proposed a one-file diff, and explained how a slow JSON body could remain unbounded. The operator reviewed and approved that diff once. Bob moved timer cleanup to an outer `finally` that covers both the request and JSON body read, and added a specific timeout message for an aborted body read. Bob's completed-task screenshot and exported session transcript are retained in `docs/hackathon/bob-screenshots/`. The edited file was checked for JavaScript syntax after the Bob session. Bob did not run project tests or a build for this task. This fix improves one failure path in the bounded public scan; it does not provide full repository security or compliance coverage.
 
 **Before submission:** Attribute this session to the signed-in team member in `BOB_USAGE_LOG.md` and retain a separate authentic session-summary screenshot from every other participating member. Add further Bob work only when an actual recorded session supports it. Codex work, the product's Bob prompt builder, and the scripted fixture switch are not IBM Bob usage.
 
@@ -46,7 +46,7 @@ The current dashboard screenshot is saved as `docs/hackathon/cover.jpg`. It is a
 
 ## Video demo
 
-Follow [DEMO_SCRIPT.md](DEMO_SCRIPT.md). The application walkthrough occupies about 125 seconds of the 2:50 script; narration must be recorded and the IBM Bob session must be shown authentically.
+The finished [2:58 demo video](https://github.com/kapasainitishreddy/store-ready-global-release-passport/blob/main/docs/hackathon/ReleaseProof-IBM-Bob-Demo.mp4) contains 158 seconds of real application footage, generated spoken narration, and captions. The final section shows the authentic IBM Bob session and reviewed one-file diff. The [recorded-demo script](https://github.com/kapasainitishreddy/store-ready-global-release-passport/blob/main/docs/hackathon/DEMO_SCRIPT.md) documents the timeline and limitations. Re-record with a team member if the organizers require human narration.
 
 ## Slide presentation
 
