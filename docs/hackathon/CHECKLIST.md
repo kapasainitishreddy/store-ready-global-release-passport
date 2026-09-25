@@ -19,7 +19,7 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Local app starts with `node apps/releaseproof/server.mjs`.
 - [x] Broken fixture shows blockers and redacted source evidence.
 - [x] Workspace keeps app entries separate; apps without a scanner stay **Not audited**.
-- [ ] Connect a real public GitHub repository in the hosted app; confirm the bounded browser scan, unscored result, source references, explicit coverage gaps, and per-app result isolation.
+- [x] Connect a real public GitHub repository in the hosted app; confirmed 16 sampled files, an unscored report, `package.json` source evidence, two coverage gaps, and per-app result isolation on September 25.
 - [x] Market plans are stored per app and locale; the searchable CLDR 48.2 catalogue provides 257 country/territory profiles and 585 locale options for Play, App Store, Galaxy Store, web SEO, and GitHub release planning. Marketplace availability remains unverified.
 - [x] Locale-specific listing fields, English starter-copy generation, market review tasks, and JSON brief export work locally without sending repository data to a service. Generated search phrases are heuristic suggestions, not keyword research.
 - [ ] Add native translations, current per-store rule sources, and real keyword-volume data before claiming automated localization or market compliance.
