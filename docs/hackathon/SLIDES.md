@@ -16,9 +16,9 @@ Visual: one portfolio branching into per-app country/store plans, with missing w
 
 ## 3. The global launch desk
 
-Show the Markets page with US, India, and Japan plans for one selected sample app. Highlight store channels, the app-summary-based English starter-copy generator, locale-specific title/description/search fields, asset tasks, and JSON brief export.
+Show the Markets page and search the CLDR-backed catalogue for an additional locale for India. Highlight separate per-app/per-locale plans, store channels, the app-summary-based English starter-copy generator, listing fields, asset tasks, and JSON brief export.
 
-Say clearly: the prototype can draft English copy from an app summary, but it does not publish to stores, fetch keyword ranks, translate automatically, or generate artwork.
+Say clearly: the prototype can draft English copy from an app summary, but it does not verify store availability, publish to stores, fetch keyword ranks, translate automatically, or generate artwork. CLDR provides locale choices, not market validation.
 
 ## 4. Evidence-backed security and release checks
 
@@ -34,6 +34,6 @@ Do not use the StoreReady prompt builder or fixture switch as Bob evidence.
 
 ## 6. Business value and next steps
 
-StoreReady keeps app release state and country-specific launch work organized in one local-first workspace. Next: authenticated repository/store connectors, sourced market rule packs, native localization workflows, and broader scanners.
+StoreReady keeps app release state and country-and-locale launch work organized in one local-first workspace. Next: authenticated repository/store connectors, sourced market rule packs, native localization workflows, and broader scanners.
 
 Show the verified public demo and MIT-scoped source links only after deployment and signed-out review.

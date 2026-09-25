@@ -10,7 +10,15 @@ From the repository root:
 node apps/releaseproof/server.mjs
 ```
 
-Open `http://127.0.0.1:4173/`. The workspace starts with one connected local fixture and two separate, unaudited sample app entries. Use **Add app** to add app metadata in this browser, then switch between app workspaces. Newly added apps are not connected to a scanner and never receive fabricated findings. The **Markets** view stores per-app plans for six starter locales and five distribution channels, including editable listing/search drafts and launch-review tasks. An optional generator drafts English listing and SEO text from an app name and editable product summary; its search phrases are heuristic ideas, not keyword research, and need human editing and native translation before use.
+Open `http://127.0.0.1:4173/`. The workspace starts with one connected local fixture and two separate, unaudited sample app entries. Use **Add app** to add app metadata in this browser, then switch between app workspaces. Newly added apps are not connected to a scanner and never receive fabricated findings. The **Markets** view offers 257 CLDR country/territory profiles and 585 locale plans across five distribution channels; the three sample apps start with a few plans to make the workflow easy to see. Search by country, language, or locale to add another per-app plan. An optional generator drafts English listing and SEO text from an app name and editable product summary; its search phrases are heuristic ideas, not keyword research, and need human editing and native translation before use.
+
+Regenerate the checked-in locale catalogue from the included Unicode CLDR 48.2 source data with:
+
+```powershell
+node apps/releaseproof/generate-market-catalog.mjs
+```
+
+The included CLDR files retain their separate Unicode license at `apps/releaseproof/data/cldr/LICENSE`.
 
 Run the focused tests with:
 
@@ -28,6 +36,6 @@ node apps/releaseproof/benchmark.mjs
 
 The connected fixture has a deterministic static profile for source evidence and release configuration. It never executes a project's configured test, build, or start command. The repaired fixture can reach `READY` because the required configuration checks pass and it declares no third-party packages; that decision applies only to this static profile.
 
-The **Compliance map** deliberately marks disclosure and policy requirements as manual review or not assessed. The demo does not certify compliance, scan runtime behavior, connect to external repositories, provide native translations, generate artwork, provide researched search volume, or claim that every security issue has been found. Unconnected apps remain **Not audited**.
+The **Compliance map** deliberately marks disclosure and policy requirements as manual review or not assessed. The demo does not verify marketplace availability, certify compliance, scan runtime behavior, connect to external repositories, provide native translations, generate artwork, provide researched search volume, or claim that every security issue has been found. CLDR languages are locale suggestions, not market demand or commercial localization research. Unconnected apps remain **Not audited**.
 
 The pointer-follow evidence highlight is a small original interaction informed by the motion examples on ReactBits. No ReactBits component source is copied into this MIT-scoped app; see the upstream [ReactBits project and license](https://github.com/DavidHDev/react-bits).

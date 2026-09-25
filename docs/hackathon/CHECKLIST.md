@@ -19,14 +19,14 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Local app starts with `node apps/releaseproof/server.mjs`.
 - [x] Broken fixture shows blockers and redacted source evidence.
 - [x] Workspace keeps app entries separate; apps without a scanner stay **Not audited**.
-- [x] Market plans are stored per app for country and locale; the demo tracks Play, App Store, Galaxy Store, web SEO, and GitHub release surfaces.
+- [x] Market plans are stored per app and locale; the searchable CLDR 48.2 catalogue provides 257 country/territory profiles and 585 locale options for Play, App Store, Galaxy Store, web SEO, and GitHub release planning. Marketplace availability remains unverified.
 - [x] Locale-specific listing fields, English starter-copy generation, market review tasks, and JSON brief export work locally without sending repository data to a service. Generated search phrases are heuristic suggestions, not keyword research.
 - [ ] Add native translations, current per-store rule sources, and real keyword-volume data before claiming automated localization or market compliance.
 - [x] Compliance map uses manual-review and not-assessed states instead of unsupported passes.
 - [x] Reviewed demo diff switches to the separate fixed fixture; the app does not modify workspace files.
 - [x] Re-audit shows the repaired fixture and keeps unexecuted test/build commands at REVIEW.
 - [x] JSON, Markdown, and HTML reports are available.
-- [x] Root test suite: 331 passed, 0 failed; focused ReleaseProof suite: 7 passed, 0 failed.
+- [x] Root test suite: 331 passed, 0 failed; focused ReleaseProof suite: 10 passed, 0 failed.
 - [x] Fixed demo fixture test and build checks passed locally.
 - [x] Add the GitHub Pages workflow and scanner-derived static fixture snapshots.
 - [x] Complete the GitHub Pages deployment and verify its URL and blocked-to-ready demo flow in a fresh browser session.
@@ -34,6 +34,7 @@ Record the verified release-candidate commit before submission. The parent Store
 
 ## IBM Bob evidence
 
+- [ ] In IBM Bob, review and trust the project folder if you want Bob to use code features; the current folder is in Restricted Mode.
 - [ ] Run genuine IBM Bob sessions against the project using the prompts in `bob/tasks/`, including `08-global-market-readiness.md`.
 - [ ] Save an authentic IBM Bob task-session summary screenshot from every participating team member in `docs/hackathon/bob-screenshots/`.
 - [ ] Complete `BOB_USAGE_LOG.md` with session dates, actual modes/features used, tasks, code changes, and results.

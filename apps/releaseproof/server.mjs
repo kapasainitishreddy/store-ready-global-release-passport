@@ -73,7 +73,7 @@ export function createReleaseProofServer() {
         const variant = url.searchParams.get('variant') || 'broken';
         return sendJson(response, 200, await auditFixture(variant));
       }
-      const staticFiles = { '/': 'index.html', '/index.html': 'index.html', '/releaseproof.css': 'releaseproof.css', '/releaseproof.js': 'releaseproof.js' };
+      const staticFiles = { '/': 'index.html', '/index.html': 'index.html', '/releaseproof.css': 'releaseproof.css', '/releaseproof.js': 'releaseproof.js', '/market-catalog.js': 'market-catalog.js' };
       const filename = staticFiles[url.pathname];
       if (request.method === 'GET' && filename) {
         const content = await fs.readFile(path.join(publicRoot, filename));

@@ -1,3 +1,5 @@
+import { marketCatalog } from './market-catalog.js';
+
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const STORAGE_KEY = 'storeready-demo-apps-v1';
@@ -6,14 +8,6 @@ const seedApps = [
   { id: 'releaseproof-demo', name: 'ReleaseProof demo', platform: 'Node.js fixture', repo: 'examples/releaseproof/broken-app', connected: true, marketSummary: 'Track source-linked software release findings and the evidence that still needs review.' },
   { id: 'pocketledger', name: 'PocketLedger', platform: 'Android app', repo: '', connected: false, marketSummary: 'A personal finance app to track spending and plan upcoming bills.' },
   { id: 'beacon-api', name: 'Beacon API', platform: 'SaaS / API', repo: '', connected: false, marketSummary: 'An API monitoring service to check uptime and review incident history.' }
-];
-const marketCatalog = [
-  { id: 'us', country: 'United States', region: 'North America', locale: 'en-US', language: 'English' },
-  { id: 'gb', country: 'United Kingdom', region: 'Europe', locale: 'en-GB', language: 'English' },
-  { id: 'in', country: 'India', region: 'South Asia', locale: 'en-IN', language: 'English' },
-  { id: 'br', country: 'Brazil', region: 'Latin America', locale: 'pt-BR', language: 'Portuguese' },
-  { id: 'de', country: 'Germany', region: 'Europe', locale: 'de-DE', language: 'German' },
-  { id: 'jp', country: 'Japan', region: 'East Asia', locale: 'ja-JP', language: 'Japanese' }
 ];
 const marketChannels = [
   { id: 'google-play', name: 'Google Play', platform: 'Android app' },
@@ -54,7 +48,7 @@ function readApps() {
 function createMarketPlan(id) {
   const market = marketCatalog.find(item => item.id === id);
   if (!market) return null;
-  return { id: market.id, metadata: { title: '', summary: '', keywords: '', seoDescription: '' }, checks: Object.fromEntries(marketCheckItems.map(([key]) => [key, false])) };
+  return { id: market.id, locale: market.locale, language: market.language, metadata: { title: '', summary: '', keywords: '', seoDescription: '' }, checks: Object.fromEntries(marketCheckItems.map(([key]) => [key, false])) };
 }
 
 function readMarketPlans() {
@@ -71,6 +65,8 @@ function readMarketPlans() {
       starter[appId] = plans.map(plan => {
         const normalized = createMarketPlan(plan?.id);
         if (!normalized) return null;
+        normalized.locale = typeof plan.locale === 'string' && plan.locale ? plan.locale : normalized.locale;
+        normalized.language = typeof plan.language === 'string' && plan.language ? plan.language : normalized.language;
         for (const key of Object.keys(normalized.metadata)) normalized.metadata[key] = typeof plan.metadata?.[key] === 'string' ? plan.metadata[key].slice(0, 5000) : '';
         for (const key of Object.keys(normalized.checks)) normalized.checks[key] = plan.checks?.[key] === true;
         return normalized;
@@ -112,14 +108,18 @@ function renderMarketStudio() {
     const progress = countMarketChecks(plan);
     const fields = countMarketFields(plan);
     const selected = plan.id === state.activeMarketId;
-    return `<button class="market-list-item ${selected ? 'selected' : ''}" type="button" data-market-id="${esc(plan.id)}" role="listitem" aria-pressed="${selected}"><span class="market-list-icon" aria-hidden="true">${esc(market.id.toUpperCase())}</span><span class="market-list-copy"><strong>${esc(market.country)}</strong><small>${esc(market.locale)} · ${esc(market.region)}</small></span><span class="market-list-state"><strong>${progress}/${marketCheckItems.length}</strong><small>${fields}/4 fields</small></span></button>`;
+    return `<button class="market-list-item ${selected ? 'selected' : ''}" type="button" data-market-id="${esc(plan.id)}" role="listitem" aria-pressed="${selected}"><span class="market-list-icon" aria-hidden="true">${esc(market.countryCode)}</span><span class="market-list-copy"><strong>${esc(market.country)}</strong><small>${esc(market.language)} · ${esc(market.locale)}</small></span><span class="market-list-state"><strong>${progress}/${marketCheckItems.length}</strong><small>${fields}/4 fields</small></span></button>`;
   }).join('');
   const picker = $('#market-country');
+  const pickerValue = picker.value;
+  const searchText = ($('#market-search')?.value || '').trim().toLocaleLowerCase();
   const currentChoices = new Set(plans.map(plan => plan.id));
-  picker.innerHTML = marketCatalog.map(market => `<option value="${esc(market.id)}" ${currentChoices.has(market.id) ? 'disabled' : ''}>${esc(market.country)} · ${esc(market.locale)}</option>`).join('');
+  const availableMarkets = marketCatalog.filter(market => !searchText || `${market.country} ${market.language} ${market.locale} ${market.region}`.toLocaleLowerCase().includes(searchText));
+  picker.innerHTML = availableMarkets.map(market => `<option value="${esc(market.id)}" ${currentChoices.has(market.id) ? 'disabled' : ''}>${esc(market.country)} · ${esc(market.language)} (${esc(market.locale)})</option>`).join('');
+  if (availableMarkets.some(market => market.id === pickerValue && !currentChoices.has(market.id))) picker.value = pickerValue;
   $('#add-market').disabled = currentChoices.size >= marketCatalog.length;
   if (!current) {
-    $('#market-work-subtitle').textContent = 'Add a country to begin a market plan.';
+    $('#market-work-subtitle').textContent = 'Add a country and language to begin a locale plan.';
     $('#market-progress').textContent = 'No plan';
     $('#market-work').innerHTML = '<div class="market-empty inline-empty"><span aria-hidden="true">◎</span><strong>Start with one market</strong><p>Every product gets its own localized listing and policy checklist.</p></div>';
     return;
@@ -128,8 +128,8 @@ function renderMarketStudio() {
   const fields = current.metadata;
   const supportedIds = new Set(supportedChannels.map(channel => channel.id));
   const done = countMarketChecks(current);
-  $('#market-work-title').textContent = `${market.country} launch package`;
-  $('#market-work-subtitle').textContent = `${market.locale} · ${market.language} · ${market.region}`;
+  $('#market-work-title').textContent = `${market.country} · ${market.language} package`;
+  $('#market-work-subtitle').textContent = `${market.locale} · ${market.region}`;
   $('#market-progress').textContent = done ? `${done} of ${marketCheckItems.length} reviewed` : 'Needs preparation';
   $('#market-work').innerHTML = `
     <div class="market-channel-list" aria-label="Store and distribution channels">${marketChannels.map(channel => `<div class="market-channel ${supportedIds.has(channel.id) ? '' : 'not-applicable'}"><span class="channel-mark">${esc(channel.name.slice(0, 1))}</span><span><strong>${esc(channel.name)}</strong><small>${supportedIds.has(channel.id) ? 'Listing planned for this app' : `Not applicable to ${esc(app.platform)}`}</small></span><b class="requirement-status ${supportedIds.has(channel.id) ? 'unknown' : 'neutral'}">${supportedIds.has(channel.id) ? 'Not drafted' : 'N/A'}</b></div>`).join('')}</div>
@@ -148,7 +148,8 @@ function addMarketPlan(id) {
   state.activeMarketId = id;
   persistMarketPlans();
   renderMarketStudio();
-  toast(`${marketCatalog.find(market => market.id === id).country} plan added for ${activeApp().name}.`);
+  const market = marketCatalog.find(item => item.id === id);
+  toast(`${market.country} (${market.locale}) plan added for ${activeApp().name}.`);
 }
 
 function exportMarketBrief() {
@@ -639,7 +640,13 @@ $('#market-work').addEventListener('change', event => {
   persistMarketPlans();
   renderMarketStudio();
 });
-$('#add-market').addEventListener('click', () => $('#add-market-modal').showModal());
+$('#add-market').addEventListener('click', () => {
+  $('#market-search').value = '';
+  renderMarketStudio();
+  $('#add-market-modal').showModal();
+  $('#market-search').focus();
+});
+$('#market-search').addEventListener('input', () => renderMarketStudio());
 $('#market-brief').addEventListener('click', exportMarketBrief);
 $('#add-market-form').addEventListener('submit', event => {
   event.preventDefault();

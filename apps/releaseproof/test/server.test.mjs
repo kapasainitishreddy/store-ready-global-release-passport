@@ -10,6 +10,10 @@ test('demo API scans only named fixtures and keeps scanner coverage distinct', a
     const page = await fetch(`${base}/`);
     assert.equal(page.status, 200);
     assert.equal(page.headers.get('x-frame-options'), 'DENY');
+    const marketCatalog = await fetch(`${base}/market-catalog.js`);
+    assert.equal(marketCatalog.status, 200);
+    assert.match(marketCatalog.headers.get('content-type'), /javascript/);
+    assert.ok((await marketCatalog.text()).includes('United States'));
     const blocked = await fetch(`${base}/api/audit?variant=broken`);
     const payload = await blocked.json();
     assert.equal(payload.report.decision, 'BLOCK');
