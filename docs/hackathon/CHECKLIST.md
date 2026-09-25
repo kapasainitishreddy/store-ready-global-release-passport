@@ -29,8 +29,8 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Root test suite: 331 passed, 0 failed; focused ReleaseProof suite: 10 passed, 0 failed.
 - [x] Fixed demo fixture test and build checks passed locally.
 - [x] Add the GitHub Pages workflow and scanner-derived static fixture snapshots.
-- [x] Complete the GitHub Pages deployment and verify its URL and blocked-to-ready demo flow in a fresh browser session.
-- [x] Add the intended public URL and platform to `SUBMISSION.md`; live deployment still needs verification.
+- [x] Complete the latest GitHub Pages deployment (build and deploy jobs green) and verify the hosted blocked-to-ready demo flow.
+- [x] Verify the public URL, 585-option locale picker, and India Hindi search in the latest hosted build.
 
 ## IBM Bob evidence
 
