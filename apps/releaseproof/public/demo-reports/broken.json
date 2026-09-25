@@ -1,0 +1,283 @@
+{
+  "report": {
+    "schemaVersion": 1,
+    "product": "ReleaseProof by StoreReady",
+    "profile": "Local static release profile",
+    "demo": true,
+    "project": "examples/releaseproof/broken-app",
+    "ref": "demo fixture",
+    "scannedAt": "2026-09-25T18:32:59.554Z",
+    "decision": "BLOCK",
+    "readinessScore": 43,
+    "summary": {
+      "decision": "BLOCK",
+      "checksPassed": 5,
+      "blockers": 2,
+      "warnings": 3,
+      "coverageGaps": 0,
+      "reasons": [
+        "Credential-like value in source",
+        "Required test workflow is missing",
+        "Secret pattern scan",
+        "Test configuration"
+      ]
+    },
+    "checks": [
+      {
+        "id": "manifest",
+        "category": "configuration",
+        "title": "Project manifest",
+        "status": "PASS",
+        "detail": "package.json parsed successfully.",
+        "required": true
+      },
+      {
+        "id": "secrets",
+        "category": "security",
+        "title": "Secret pattern scan",
+        "status": "FAIL",
+        "detail": "1 credential-like assignment(s) require review.",
+        "required": true
+      },
+      {
+        "id": "tests",
+        "category": "testing",
+        "title": "Test configuration",
+        "status": "FAIL",
+        "detail": "A test command and at least one test source file are required.",
+        "required": true
+      },
+      {
+        "id": "test-execution",
+        "category": "testing",
+        "title": "Test execution",
+        "status": "NOT_RUN",
+        "detail": "This static profile never executes project-provided test commands.",
+        "required": false
+      },
+      {
+        "id": "build",
+        "category": "build",
+        "title": "Build configuration",
+        "status": "WARNING",
+        "detail": "No build script was found.",
+        "required": true
+      },
+      {
+        "id": "build-execution",
+        "category": "build",
+        "title": "Build execution",
+        "status": "NOT_RUN",
+        "detail": "This static profile never executes project-provided build commands.",
+        "required": false
+      },
+      {
+        "id": "lint-execution",
+        "category": "static-analysis",
+        "title": "Lint execution",
+        "status": "NOT_RUN",
+        "detail": "No lint script was found; no linter is executed by this profile.",
+        "required": false
+      },
+      {
+        "id": "typecheck-execution",
+        "category": "typechecking",
+        "title": "Typecheck execution",
+        "status": "NOT_RUN",
+        "detail": "No typecheck script was found; no typechecker is executed by this profile.",
+        "required": false
+      },
+      {
+        "id": "dependencies",
+        "category": "dependencies",
+        "title": "Dependency inventory",
+        "status": "PASS",
+        "detail": "No third-party packages are declared.",
+        "required": true
+      },
+      {
+        "id": "ci",
+        "category": "ci-cd",
+        "title": "CI workflow",
+        "status": "WARNING",
+        "detail": "No GitHub Actions workflow was found.",
+        "required": true
+      },
+      {
+        "id": "documentation",
+        "category": "documentation",
+        "title": "Project documentation",
+        "status": "PASS",
+        "detail": "README.md is present.",
+        "required": true
+      },
+      {
+        "id": "license",
+        "category": "licensing",
+        "title": "License file",
+        "status": "PASS",
+        "detail": "LICENSE is present; license terms need human review.",
+        "required": true
+      },
+      {
+        "id": "deployment",
+        "category": "deployment",
+        "title": "Deployment configuration",
+        "status": "WARNING",
+        "detail": "No supported deployment configuration file was found.",
+        "required": true
+      },
+      {
+        "id": "environment",
+        "category": "configuration",
+        "title": "Environment file hygiene",
+        "status": "PASS",
+        "detail": "No tracked non-template .env file was found.",
+        "required": true
+      },
+      {
+        "id": "privacy",
+        "category": "privacy",
+        "title": "Privacy declaration review",
+        "status": "NOT_APPLICABLE",
+        "detail": "This web fixture has no mobile privacy declarations; runtime data use is not assessed.",
+        "required": false
+      },
+      {
+        "id": "permissions",
+        "category": "permissions",
+        "title": "Platform permission review",
+        "status": "NOT_APPLICABLE",
+        "detail": "This web fixture contains no mobile permission manifest.",
+        "required": false
+      },
+      {
+        "id": "mobile-store",
+        "category": "mobile",
+        "title": "Mobile-store readiness",
+        "status": "NOT_APPLICABLE",
+        "detail": "This fixture is a Node.js web project.",
+        "required": false
+      }
+    ],
+    "specialistJobs": [
+      {
+        "name": "Security",
+        "status": "BLOCKED"
+      },
+      {
+        "name": "Testing",
+        "status": "BLOCKED"
+      },
+      {
+        "name": "Dependencies",
+        "status": "PASS"
+      },
+      {
+        "name": "Build & Typecheck",
+        "status": "REVIEW"
+      },
+      {
+        "name": "Deployment",
+        "status": "REVIEW"
+      },
+      {
+        "name": "Documentation",
+        "status": "PASS"
+      }
+    ],
+    "findings": [
+      {
+        "id": "91e3591830fc",
+        "category": "security",
+        "severity": "high",
+        "title": "Credential-like value in source",
+        "description": "A credential-shaped assignment was found. Values are redacted in evidence.",
+        "evidence": {
+          "file": "src/config.mjs",
+          "line": 2,
+          "rule": "hardcoded-credential-pattern",
+          "scanner": "releaseproof-static",
+          "excerpt": "export const API_TOKEN = [REDACTED];"
+        },
+        "whyItMatters": "Secrets committed to source can be copied from repository history and reused.",
+        "remediation": "Move the value to environment configuration, rotate any real credential, and remove it from history where needed.",
+        "autoFixAvailable": false,
+        "status": "open"
+      },
+      {
+        "id": "557aa17a1ee2",
+        "category": "testing",
+        "severity": "high",
+        "title": "Required test workflow is missing",
+        "description": "No paired test command and test source file were found.",
+        "evidence": {
+          "file": "package.json",
+          "rule": "test-configuration",
+          "scanner": "releaseproof-static"
+        },
+        "whyItMatters": "Without a repeatable test entry point, changes cannot be checked consistently before release.",
+        "remediation": "Add a test script and a focused test suite for critical behavior.",
+        "autoFixAvailable": false,
+        "status": "open"
+      },
+      {
+        "id": "6dc510c5c48e",
+        "category": "build",
+        "severity": "medium",
+        "title": "Build command is not configured",
+        "description": "package.json has no build script.",
+        "evidence": {
+          "file": "package.json",
+          "rule": "build-configuration",
+          "scanner": "releaseproof-static"
+        },
+        "whyItMatters": "The release artifact cannot be reproduced from a documented build command.",
+        "remediation": "Add and document a production build command.",
+        "autoFixAvailable": false,
+        "status": "open"
+      },
+      {
+        "id": "eb7400948811",
+        "category": "ci-cd",
+        "severity": "medium",
+        "title": "Continuous integration workflow is missing",
+        "description": "No workflow exists under .github/workflows/.",
+        "evidence": {
+          "file": ".github/workflows",
+          "rule": "ci-workflow",
+          "scanner": "releaseproof-static"
+        },
+        "whyItMatters": "The repository has no checked-in automation to run its release checks on changes.",
+        "remediation": "Add a CI workflow that installs dependencies and runs the test and build commands.",
+        "autoFixAvailable": false,
+        "status": "open"
+      },
+      {
+        "id": "4353532c7b7e",
+        "category": "deployment",
+        "severity": "medium",
+        "title": "Deployment configuration is missing",
+        "description": "No supported deployment configuration was found.",
+        "evidence": {
+          "rule": "deployment-config",
+          "scanner": "releaseproof-static"
+        },
+        "whyItMatters": "The intended production deployment cannot be checked from repository configuration.",
+        "remediation": "Document the platform and add its production configuration.",
+        "autoFixAvailable": false,
+        "status": "open"
+      }
+    ],
+    "coverageGaps": [],
+    "limitations": [
+      "Static file checks do not execute tests or builds and cannot establish runtime behavior.",
+      "The built-in secret rule can miss credentials and can produce false positives.",
+      "Dependency advisories are not queried when the local offline profile cannot establish advisory coverage."
+    ],
+    "demoVariant": "broken",
+    "fileCount": 5
+  },
+  "markdown": "# ReleaseProof by StoreReady report\n\n- Project: examples/releaseproof/broken-app\n- Ref: demo fixture\n- Scanned: 2026-09-25T18:32:59.554Z\n- Profile: Local static release profile\n- Decision: BLOCK\n- Readiness score: 43/100\n\n## Checks\n\n| Category | Check | Status | Detail |\n| --- | --- | --- | --- |\n| configuration | Project manifest | PASS | package.json parsed successfully. |\n| security | Secret pattern scan | FAIL | 1 credential-like assignment(s) require review. |\n| testing | Test configuration | FAIL | A test command and at least one test source file are required. |\n| testing | Test execution | NOT_RUN | This static profile never executes project-provided test commands. |\n| build | Build configuration | WARNING | No build script was found. |\n| build | Build execution | NOT_RUN | This static profile never executes project-provided build commands. |\n| static-analysis | Lint execution | NOT_RUN | No lint script was found; no linter is executed by this profile. |\n| typechecking | Typecheck execution | NOT_RUN | No typecheck script was found; no typechecker is executed by this profile. |\n| dependencies | Dependency inventory | PASS | No third-party packages are declared. |\n| ci-cd | CI workflow | WARNING | No GitHub Actions workflow was found. |\n| documentation | Project documentation | PASS | README.md is present. |\n| licensing | License file | PASS | LICENSE is present; license terms need human review. |\n| deployment | Deployment configuration | WARNING | No supported deployment configuration file was found. |\n| configuration | Environment file hygiene | PASS | No tracked non-template .env file was found. |\n| privacy | Privacy declaration review | NOT_APPLICABLE | This web fixture has no mobile privacy declarations; runtime data use is not assessed. |\n| permissions | Platform permission review | NOT_APPLICABLE | This web fixture contains no mobile permission manifest. |\n| mobile | Mobile-store readiness | NOT_APPLICABLE | This fixture is a Node.js web project. |\n\n## Findings\n\n### HIGH: Credential-like value in source\n\nA credential-shaped assignment was found. Values are redacted in evidence. **Rule:** hardcoded-credential-pattern. **Source:** releaseproof-static at src/config.mjs:2.\n\n**Why it matters:** Secrets committed to source can be copied from repository history and reused.\n\n**Remediation:** Move the value to environment configuration, rotate any real credential, and remove it from history where needed.\n\n### HIGH: Required test workflow is missing\n\nNo paired test command and test source file were found. **Rule:** test-configuration. **Source:** releaseproof-static at package.json.\n\n**Why it matters:** Without a repeatable test entry point, changes cannot be checked consistently before release.\n\n**Remediation:** Add a test script and a focused test suite for critical behavior.\n\n### MEDIUM: Build command is not configured\n\npackage.json has no build script. **Rule:** build-configuration. **Source:** releaseproof-static at package.json.\n\n**Why it matters:** The release artifact cannot be reproduced from a documented build command.\n\n**Remediation:** Add and document a production build command.\n\n### MEDIUM: Continuous integration workflow is missing\n\nNo workflow exists under .github/workflows/. **Rule:** ci-workflow. **Source:** releaseproof-static at .github/workflows.\n\n**Why it matters:** The repository has no checked-in automation to run its release checks on changes.\n\n**Remediation:** Add a CI workflow that installs dependencies and runs the test and build commands.\n\n### MEDIUM: Deployment configuration is missing\n\nNo supported deployment configuration was found. **Rule:** deployment-config. **Source:** releaseproof-static.\n\n**Why it matters:** The intended production deployment cannot be checked from repository configuration.\n\n**Remediation:** Document the platform and add its production configuration.\n\n## Coverage gaps\n\n- No coverage gaps recorded by this static profile.\n\n## Limitations\n\n- Static file checks do not execute tests or builds and cannot establish runtime behavior.\n- The built-in secret rule can miss credentials and can produce false positives.\n- Dependency advisories are not queried when the local offline profile cannot establish advisory coverage.\n",
+  "evidenceHtml": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width\"><title>ReleaseProof evidence</title><style>body{font:16px/1.55 system-ui,sans-serif;max-width:980px;margin:48px auto;padding:0 24px;color:#17212b}header{border-bottom:1px solid #ccd4dc;padding-bottom:20px}h1{margin:0}.decision{font-size:1.5rem;font-weight:800;color:#b3333d}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:10px;border-bottom:1px solid #dbe1e6}code{font-family:ui-monospace,monospace}</style><header><h1>ReleaseProof by StoreReady</h1><p>examples/releaseproof/broken-app · <code>demo fixture</code></p><p class=\"decision\">BLOCK · 43/100</p><p>Local static release profile · 2026-09-25T18:32:59.554Z</p></header><h2>Checks</h2><table><thead><tr><th>Category</th><th>Check</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><td>configuration</td><td>Project manifest</td><td>PASS</td><td>package.json parsed successfully.</td></tr><tr><td>security</td><td>Secret pattern scan</td><td>FAIL</td><td>1 credential-like assignment(s) require review.</td></tr><tr><td>testing</td><td>Test configuration</td><td>FAIL</td><td>A test command and at least one test source file are required.</td></tr><tr><td>testing</td><td>Test execution</td><td>NOT_RUN</td><td>This static profile never executes project-provided test commands.</td></tr><tr><td>build</td><td>Build configuration</td><td>WARNING</td><td>No build script was found.</td></tr><tr><td>build</td><td>Build execution</td><td>NOT_RUN</td><td>This static profile never executes project-provided build commands.</td></tr><tr><td>static-analysis</td><td>Lint execution</td><td>NOT_RUN</td><td>No lint script was found; no linter is executed by this profile.</td></tr><tr><td>typechecking</td><td>Typecheck execution</td><td>NOT_RUN</td><td>No typecheck script was found; no typechecker is executed by this profile.</td></tr><tr><td>dependencies</td><td>Dependency inventory</td><td>PASS</td><td>No third-party packages are declared.</td></tr><tr><td>ci-cd</td><td>CI workflow</td><td>WARNING</td><td>No GitHub Actions workflow was found.</td></tr><tr><td>documentation</td><td>Project documentation</td><td>PASS</td><td>README.md is present.</td></tr><tr><td>licensing</td><td>License file</td><td>PASS</td><td>LICENSE is present; license terms need human review.</td></tr><tr><td>deployment</td><td>Deployment configuration</td><td>WARNING</td><td>No supported deployment configuration file was found.</td></tr><tr><td>configuration</td><td>Environment file hygiene</td><td>PASS</td><td>No tracked non-template .env file was found.</td></tr><tr><td>privacy</td><td>Privacy declaration review</td><td>NOT_APPLICABLE</td><td>This web fixture has no mobile privacy declarations; runtime data use is not assessed.</td></tr><tr><td>permissions</td><td>Platform permission review</td><td>NOT_APPLICABLE</td><td>This web fixture contains no mobile permission manifest.</td></tr><tr><td>mobile</td><td>Mobile-store readiness</td><td>NOT_APPLICABLE</td><td>This fixture is a Node.js web project.</td></tr></tbody></table><h2>Findings</h2><article><h3>HIGH · Credential-like value in source</h3><p>A credential-shaped assignment was found. Values are redacted in evidence.</p><p><code>src/config.mjs:2</code> · hardcoded-credential-pattern · releaseproof-static</p><pre>export const API_TOKEN = [REDACTED];</pre><p>Move the value to environment configuration, rotate any real credential, and remove it from history where needed.</p></article><article><h3>HIGH · Required test workflow is missing</h3><p>No paired test command and test source file were found.</p><p><code>package.json</code> · test-configuration · releaseproof-static</p><p>Add a test script and a focused test suite for critical behavior.</p></article><article><h3>MEDIUM · Build command is not configured</h3><p>package.json has no build script.</p><p><code>package.json</code> · build-configuration · releaseproof-static</p><p>Add and document a production build command.</p></article><article><h3>MEDIUM · Continuous integration workflow is missing</h3><p>No workflow exists under .github/workflows/.</p><p><code>.github/workflows</code> · ci-workflow · releaseproof-static</p><p>Add a CI workflow that installs dependencies and runs the test and build commands.</p></article><article><h3>MEDIUM · Deployment configuration is missing</h3><p>No supported deployment configuration was found.</p><p><code>repository</code> · deployment-config · releaseproof-static</p><p>Document the platform and add its production configuration.</p></article><h2>Coverage gaps</h2><p>None recorded.</p><h2>Limitations</h2><ul><li>Static file checks do not execute tests or builds and cannot establish runtime behavior.</li><li>The built-in secret rule can miss credentials and can produce false positives.</li><li>Dependency advisories are not queried when the local offline profile cannot establish advisory coverage.</li></ul></html>"
+}

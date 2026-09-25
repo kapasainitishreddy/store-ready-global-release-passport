@@ -1,0 +1,196 @@
+{
+  "report": {
+    "schemaVersion": 1,
+    "product": "ReleaseProof by StoreReady",
+    "profile": "Local static release profile",
+    "demo": true,
+    "project": "examples/releaseproof/fixed-app",
+    "ref": "demo fixture",
+    "scannedAt": "2026-09-25T18:32:59.566Z",
+    "decision": "READY",
+    "readinessScore": 100,
+    "summary": {
+      "decision": "READY",
+      "checksPassed": 10,
+      "blockers": 0,
+      "warnings": 0,
+      "coverageGaps": 0,
+      "reasons": []
+    },
+    "checks": [
+      {
+        "id": "manifest",
+        "category": "configuration",
+        "title": "Project manifest",
+        "status": "PASS",
+        "detail": "package.json parsed successfully.",
+        "required": true
+      },
+      {
+        "id": "secrets",
+        "category": "security",
+        "title": "Secret pattern scan",
+        "status": "PASS",
+        "detail": "No credential-like source assignments matched the built-in rule.",
+        "required": true
+      },
+      {
+        "id": "tests",
+        "category": "testing",
+        "title": "Test configuration",
+        "status": "PASS",
+        "detail": "A test command and test source files are present. This static check does not execute project code.",
+        "required": true
+      },
+      {
+        "id": "test-execution",
+        "category": "testing",
+        "title": "Test execution",
+        "status": "NOT_RUN",
+        "detail": "This static profile never executes project-provided test commands.",
+        "required": false
+      },
+      {
+        "id": "build",
+        "category": "build",
+        "title": "Build configuration",
+        "status": "PASS",
+        "detail": "A build script is present; this audit does not execute it.",
+        "required": true
+      },
+      {
+        "id": "build-execution",
+        "category": "build",
+        "title": "Build execution",
+        "status": "NOT_RUN",
+        "detail": "This static profile never executes project-provided build commands.",
+        "required": false
+      },
+      {
+        "id": "lint-execution",
+        "category": "static-analysis",
+        "title": "Lint execution",
+        "status": "NOT_RUN",
+        "detail": "No lint script was found; no linter is executed by this profile.",
+        "required": false
+      },
+      {
+        "id": "typecheck-execution",
+        "category": "typechecking",
+        "title": "Typecheck execution",
+        "status": "NOT_RUN",
+        "detail": "No typecheck script was found; no typechecker is executed by this profile.",
+        "required": false
+      },
+      {
+        "id": "dependencies",
+        "category": "dependencies",
+        "title": "Dependency inventory",
+        "status": "PASS",
+        "detail": "No third-party packages are declared.",
+        "required": true
+      },
+      {
+        "id": "ci",
+        "category": "ci-cd",
+        "title": "CI workflow",
+        "status": "PASS",
+        "detail": "1 workflow file(s) found.",
+        "required": true
+      },
+      {
+        "id": "documentation",
+        "category": "documentation",
+        "title": "Project documentation",
+        "status": "PASS",
+        "detail": "README.md is present.",
+        "required": true
+      },
+      {
+        "id": "license",
+        "category": "licensing",
+        "title": "License file",
+        "status": "PASS",
+        "detail": "LICENSE is present; license terms need human review.",
+        "required": true
+      },
+      {
+        "id": "deployment",
+        "category": "deployment",
+        "title": "Deployment configuration",
+        "status": "PASS",
+        "detail": "A supported deployment configuration file is present.",
+        "required": true
+      },
+      {
+        "id": "environment",
+        "category": "configuration",
+        "title": "Environment file hygiene",
+        "status": "PASS",
+        "detail": "No tracked non-template .env file was found.",
+        "required": true
+      },
+      {
+        "id": "privacy",
+        "category": "privacy",
+        "title": "Privacy declaration review",
+        "status": "NOT_APPLICABLE",
+        "detail": "This web fixture has no mobile privacy declarations; runtime data use is not assessed.",
+        "required": false
+      },
+      {
+        "id": "permissions",
+        "category": "permissions",
+        "title": "Platform permission review",
+        "status": "NOT_APPLICABLE",
+        "detail": "This web fixture contains no mobile permission manifest.",
+        "required": false
+      },
+      {
+        "id": "mobile-store",
+        "category": "mobile",
+        "title": "Mobile-store readiness",
+        "status": "NOT_APPLICABLE",
+        "detail": "This fixture is a Node.js web project.",
+        "required": false
+      }
+    ],
+    "specialistJobs": [
+      {
+        "name": "Security",
+        "status": "PASS"
+      },
+      {
+        "name": "Testing",
+        "status": "REVIEW"
+      },
+      {
+        "name": "Dependencies",
+        "status": "PASS"
+      },
+      {
+        "name": "Build & Typecheck",
+        "status": "REVIEW"
+      },
+      {
+        "name": "Deployment",
+        "status": "PASS"
+      },
+      {
+        "name": "Documentation",
+        "status": "PASS"
+      }
+    ],
+    "findings": [],
+    "coverageGaps": [],
+    "limitations": [
+      "Static file checks do not execute tests or builds and cannot establish runtime behavior.",
+      "The built-in secret rule can miss credentials and can produce false positives.",
+      "Dependency advisories are not queried when the local offline profile cannot establish advisory coverage."
+    ],
+    "demoVariant": "fixed",
+    "fileCount": 8
+  },
+  "markdown": "# ReleaseProof by StoreReady report\n\n- Project: examples/releaseproof/fixed-app\n- Ref: demo fixture\n- Scanned: 2026-09-25T18:32:59.566Z\n- Profile: Local static release profile\n- Decision: READY\n- Readiness score: 100/100\n\n## Checks\n\n| Category | Check | Status | Detail |\n| --- | --- | --- | --- |\n| configuration | Project manifest | PASS | package.json parsed successfully. |\n| security | Secret pattern scan | PASS | No credential-like source assignments matched the built-in rule. |\n| testing | Test configuration | PASS | A test command and test source files are present. This static check does not execute project code. |\n| testing | Test execution | NOT_RUN | This static profile never executes project-provided test commands. |\n| build | Build configuration | PASS | A build script is present; this audit does not execute it. |\n| build | Build execution | NOT_RUN | This static profile never executes project-provided build commands. |\n| static-analysis | Lint execution | NOT_RUN | No lint script was found; no linter is executed by this profile. |\n| typechecking | Typecheck execution | NOT_RUN | No typecheck script was found; no typechecker is executed by this profile. |\n| dependencies | Dependency inventory | PASS | No third-party packages are declared. |\n| ci-cd | CI workflow | PASS | 1 workflow file(s) found. |\n| documentation | Project documentation | PASS | README.md is present. |\n| licensing | License file | PASS | LICENSE is present; license terms need human review. |\n| deployment | Deployment configuration | PASS | A supported deployment configuration file is present. |\n| configuration | Environment file hygiene | PASS | No tracked non-template .env file was found. |\n| privacy | Privacy declaration review | NOT_APPLICABLE | This web fixture has no mobile privacy declarations; runtime data use is not assessed. |\n| permissions | Platform permission review | NOT_APPLICABLE | This web fixture contains no mobile permission manifest. |\n| mobile | Mobile-store readiness | NOT_APPLICABLE | This fixture is a Node.js web project. |\n\n## Findings\n\nNo findings were generated by the checks in this profile.\n## Coverage gaps\n\n- No coverage gaps recorded by this static profile.\n\n## Limitations\n\n- Static file checks do not execute tests or builds and cannot establish runtime behavior.\n- The built-in secret rule can miss credentials and can produce false positives.\n- Dependency advisories are not queried when the local offline profile cannot establish advisory coverage.\n",
+  "evidenceHtml": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width\"><title>ReleaseProof evidence</title><style>body{font:16px/1.55 system-ui,sans-serif;max-width:980px;margin:48px auto;padding:0 24px;color:#17212b}header{border-bottom:1px solid #ccd4dc;padding-bottom:20px}h1{margin:0}.decision{font-size:1.5rem;font-weight:800;color:#137456}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:10px;border-bottom:1px solid #dbe1e6}code{font-family:ui-monospace,monospace}</style><header><h1>ReleaseProof by StoreReady</h1><p>examples/releaseproof/fixed-app · <code>demo fixture</code></p><p class=\"decision\">READY · 100/100</p><p>Local static release profile · 2026-09-25T18:32:59.566Z</p></header><h2>Checks</h2><table><thead><tr><th>Category</th><th>Check</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><td>configuration</td><td>Project manifest</td><td>PASS</td><td>package.json parsed successfully.</td></tr><tr><td>security</td><td>Secret pattern scan</td><td>PASS</td><td>No credential-like source assignments matched the built-in rule.</td></tr><tr><td>testing</td><td>Test configuration</td><td>PASS</td><td>A test command and test source files are present. This static check does not execute project code.</td></tr><tr><td>testing</td><td>Test execution</td><td>NOT_RUN</td><td>This static profile never executes project-provided test commands.</td></tr><tr><td>build</td><td>Build configuration</td><td>PASS</td><td>A build script is present; this audit does not execute it.</td></tr><tr><td>build</td><td>Build execution</td><td>NOT_RUN</td><td>This static profile never executes project-provided build commands.</td></tr><tr><td>static-analysis</td><td>Lint execution</td><td>NOT_RUN</td><td>No lint script was found; no linter is executed by this profile.</td></tr><tr><td>typechecking</td><td>Typecheck execution</td><td>NOT_RUN</td><td>No typecheck script was found; no typechecker is executed by this profile.</td></tr><tr><td>dependencies</td><td>Dependency inventory</td><td>PASS</td><td>No third-party packages are declared.</td></tr><tr><td>ci-cd</td><td>CI workflow</td><td>PASS</td><td>1 workflow file(s) found.</td></tr><tr><td>documentation</td><td>Project documentation</td><td>PASS</td><td>README.md is present.</td></tr><tr><td>licensing</td><td>License file</td><td>PASS</td><td>LICENSE is present; license terms need human review.</td></tr><tr><td>deployment</td><td>Deployment configuration</td><td>PASS</td><td>A supported deployment configuration file is present.</td></tr><tr><td>configuration</td><td>Environment file hygiene</td><td>PASS</td><td>No tracked non-template .env file was found.</td></tr><tr><td>privacy</td><td>Privacy declaration review</td><td>NOT_APPLICABLE</td><td>This web fixture has no mobile privacy declarations; runtime data use is not assessed.</td></tr><tr><td>permissions</td><td>Platform permission review</td><td>NOT_APPLICABLE</td><td>This web fixture contains no mobile permission manifest.</td></tr><tr><td>mobile</td><td>Mobile-store readiness</td><td>NOT_APPLICABLE</td><td>This fixture is a Node.js web project.</td></tr></tbody></table><h2>Findings</h2><p>No findings in this profile.</p><h2>Coverage gaps</h2><p>None recorded.</p><h2>Limitations</h2><ul><li>Static file checks do not execute tests or builds and cannot establish runtime behavior.</li><li>The built-in secret rule can miss credentials and can produce false positives.</li><li>Dependency advisories are not queried when the local offline profile cannot establish advisory coverage.</li></ul></html>"
+}

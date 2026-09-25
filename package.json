@@ -11,6 +11,7 @@
   "scripts": {
     "start": "node apps/releaseproof/server.mjs",
     "test": "node --test apps/releaseproof/test/*.test.mjs",
-    "benchmark": "node apps/releaseproof/benchmark.mjs"
+    "benchmark": "node apps/releaseproof/benchmark.mjs",
+    "build:demo-reports": "node apps/releaseproof/generate-demo-reports.mjs"
   }
 }

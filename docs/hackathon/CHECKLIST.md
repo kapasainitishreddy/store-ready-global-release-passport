@@ -11,8 +11,8 @@ Record the verified release-candidate commit before submission. The parent Store
 - [ ] Replace the IBM Bob Usage Statement with a factual account of real IBM Bob sessions; keep it at or below 500 words.
 - [x] Technology and category tags listed in `SUBMISSION.md`.
 - [x] MIT license notices are scoped to the new ReleaseProof app, its demo fixtures, Bob workflow materials, and hackathon materials.
-- [ ] Review the exact public source bundle and confirm it contains no proprietary StoreReady implementation or private data.
-- [ ] Publish the scoped MIT source in a new public code repository and confirm it opens while signed out. Do not change the existing parent repository's visibility or license.
+- [x] Review the exact public source bundle and confirm it contains no proprietary StoreReady implementation or private data.
+- [x] Publish the scoped MIT source in a new public code repository. Do not change the existing parent repository's visibility or license.
 
 ## Working prototype
 
@@ -26,21 +26,22 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Reviewed demo diff switches to the separate fixed fixture; the app does not modify workspace files.
 - [x] Re-audit shows the repaired fixture and keeps unexecuted test/build commands at REVIEW.
 - [x] JSON, Markdown, and HTML reports are available.
-- [x] Root test suite: 331 passed, 0 failed. `npm run verify` passed.
+- [x] Root test suite: 331 passed, 0 failed; focused ReleaseProof suite: 7 passed, 0 failed.
 - [x] Fixed demo fixture test and build checks passed locally.
-- [ ] Deploy the demo application and verify its working URL in a fresh browser session.
-- [ ] Replace the local-only URL in `SUBMISSION.md` with the verified public URL and platform.
+- [x] Add the GitHub Pages workflow and scanner-derived static fixture snapshots.
+- [ ] Complete the GitHub Pages deployment and verify its URL in a fresh, signed-out browser session.
+- [x] Add the intended public URL and platform to `SUBMISSION.md`; live deployment still needs verification.
 
 ## IBM Bob evidence
 
 - [ ] Run genuine IBM Bob sessions against the project using the prompts in `bob/tasks/`, including `08-global-market-readiness.md`.
-- [ ] Save an authentic IBM Bob task-session summary screenshot from every participating team member in `bob-screenshots/`.
+- [ ] Save an authentic IBM Bob task-session summary screenshot from every participating team member in `docs/hackathon/bob-screenshots/`.
 - [ ] Complete `BOB_USAGE_LOG.md` with session dates, actual modes/features used, tasks, code changes, and results.
 - [ ] Ensure the final IBM Bob Usage Statement matches the retained screenshots and repository changes. Do not count Codex work or the demo prompt builder as Bob usage.
 
 ## Presentation assets
 
-- [x] Cover image: `cover.jpg`, captured from the working StoreReady workspace with the connected blocked fixture.
+- [x] Cover image: `cover.jpg`, captured from the working StoreReady workspace with the connected blocked fixture; market capture in `market-workspace.jpg`.
 - [x] Editable six-slide deck with speaker notes: `slides.pptx`.
 - [ ] Record and upload a narrated video no longer than 3 minutes.
 - [ ] In the video, briefly explain the problem and show the working solution on screen for at least 90 seconds.

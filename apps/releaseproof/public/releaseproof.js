@@ -29,7 +29,7 @@ const marketCheckItems = [
   ['privacy', 'Privacy disclosures and data-use evidence reviewed'],
   ['policy', 'Current store and country requirements reviewed']
 ];
-const state = { apps: readApps(), activeAppId: 'releaseproof-demo', view: 'overview', profile: 'release', result: null, variant: 'broken', selectedFinding: 0, startedAt: 0, toastTimer: null, markets: readMarketPlans(), activeMarketId: 'us' };
+const state = { apps: readApps(), activeAppId: 'releaseproof-demo', view: 'overview', profile: 'release', result: null, variant: 'broken', selectedFinding: 0, startedAt: 0, toastTimer: null, markets: readMarketPlans(), activeMarketId: 'us', hostedReplay: false };
 const groups = [
   { id: 'security', label: 'Security & secrets', description: 'Credential patterns and security signals', keys: ['security', 'secret'] },
   { id: 'testing', label: 'Tests & verification', description: 'Test configuration and verification signals', keys: ['testing', 'test'] },
@@ -407,9 +407,20 @@ async function runAudit(variant = state.variant) {
   $('#decision-description').textContent = 'Reading bounded source files. No project commands are executed.';
   $('#decision-dot').className = 'decision-dot review pulse';
   try {
-    const response = await fetch(`./api/audit?variant=${encodeURIComponent(variant)}`, { headers: { Accept: 'application/json' }, cache: 'no-store' });
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.error || 'The release audit could not complete.');
+    let payload;
+    try {
+      const response = await fetch(`./api/audit?variant=${encodeURIComponent(variant)}`, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      if (!response.ok) throw new Error('Static fixture replay');
+      payload = await response.json();
+      state.hostedReplay = false;
+    } catch {
+      const snapshot = await fetch(`./demo-reports/${encodeURIComponent(variant)}.json`, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      if (!snapshot.ok) throw new Error('The local audit service and saved demo result are both unavailable.');
+      payload = await snapshot.json();
+      state.hostedReplay = true;
+      const notice = $('#fixture-notice');
+      if (notice) notice.innerHTML = '<div><strong>Hosted demo replay</strong><span>Shows saved results for the bundled sample fixtures. No repository is uploaded and no project command runs.</span></div><a href="#scope">Audit scope</a>';
+    }
     state.result = payload;
     $('#app-summary').dataset.elapsedMs = String(Math.round(performance.now() - state.startedAt));
     state.selectedFinding = 0;

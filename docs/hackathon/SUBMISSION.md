@@ -1,6 +1,6 @@
 # lablab.ai submission draft
 
-Use [CHECKLIST.md](CHECKLIST.md) to finish and verify the items that still require public hosting or genuine IBM Bob session evidence.
+Use [CHECKLIST.md](CHECKLIST.md) to finish and verify the items that still require a completed hosted deployment, genuine IBM Bob session evidence, and a recorded video.
 
 ## Project title
 
@@ -31,14 +31,14 @@ Before submission, run the prompts in `bob/tasks/` in IBM Bob with the actual re
 
 ## Demo platform and working URL
 
-- Platform: local Node.js web app served by the standalone ReleaseProof demo (`apps/releaseproof/server.mjs`)
+- Platform: GitHub Pages static demo; local Node.js app served by the standalone ReleaseProof demo (`apps/releaseproof/server.mjs`)
 - Local demo: `http://127.0.0.1:4173/` after `node apps/releaseproof/server.mjs`
-- Public working URL: **not deployed** — enter a verified public URL before submission.
+- Public working URL: `https://kapasainitishreddy.github.io/store-ready-global-release-passport/` — verify a completed Pages deployment and test while signed out before submission. The hosted audit replays generated fixture-result JSON snapshots; run locally for a fresh scan.
 
 ## Code repository
 
-- Repository: `https://github.com/kapasainitishreddy/play-store-ready-vibe-coded-apps`
-- Current visibility: **private**. Make public only after resolving the licensing scope and reviewing the published source.
+- Repository: `https://github.com/kapasainitishreddy/store-ready-global-release-passport` (public, standalone scoped package).
+- The proprietary StoreReady parent repository remains private and is not included.
 
 ## Cover image
 
@@ -62,4 +62,4 @@ StoreReady's point of view is a global release passport for a portfolio: each ap
 
 ## MIT license note
 
-The parent repository identifies itself as proprietary and `UNLICENSED`. The owner selected an MIT scope limited to new ReleaseProof additions. `apps/releaseproof/`, each self-contained demo fixture, `bob/`, and `docs/hackathon/` now contain scoped MIT license notices. The existing StoreReady source remains proprietary, so this parent repository must not be published as an MIT-licensed repository. Host the standalone MIT-scoped ReleaseProof package in a public repository before submission, and verify rights for any source links that cross into the parent project.
+The parent repository identifies itself as proprietary and `UNLICENSED`. The owner selected an MIT scope limited to new ReleaseProof additions. `apps/releaseproof/`, each self-contained demo fixture, `bob/`, and `docs/hackathon/` contain scoped MIT license notices. The existing StoreReady source remains proprietary and is not included in the public repository.
