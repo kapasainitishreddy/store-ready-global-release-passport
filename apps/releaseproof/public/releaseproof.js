@@ -3,9 +3,9 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&a
 const STORAGE_KEY = 'storeready-demo-apps-v1';
 const MARKET_STORAGE_KEY = 'storeready-market-plans-v1';
 const seedApps = [
-  { id: 'releaseproof-demo', name: 'ReleaseProof demo', platform: 'Node.js fixture', repo: 'examples/releaseproof/broken-app', connected: true },
-  { id: 'pocketledger', name: 'PocketLedger', platform: 'Android app', repo: '', connected: false },
-  { id: 'beacon-api', name: 'Beacon API', platform: 'SaaS / API', repo: '', connected: false }
+  { id: 'releaseproof-demo', name: 'ReleaseProof demo', platform: 'Node.js fixture', repo: 'examples/releaseproof/broken-app', connected: true, marketSummary: 'Track source-linked software release findings and the evidence that still needs review.' },
+  { id: 'pocketledger', name: 'PocketLedger', platform: 'Android app', repo: '', connected: false, marketSummary: 'A personal finance app to track spending and plan upcoming bills.' },
+  { id: 'beacon-api', name: 'Beacon API', platform: 'SaaS / API', repo: '', connected: false, marketSummary: 'An API monitoring service to check uptime and review incident history.' }
 ];
 const marketCatalog = [
   { id: 'us', country: 'United States', region: 'North America', locale: 'en-US', language: 'English' },
@@ -134,7 +134,8 @@ function renderMarketStudio() {
   $('#market-work').innerHTML = `
     <div class="market-channel-list" aria-label="Store and distribution channels">${marketChannels.map(channel => `<div class="market-channel ${supportedIds.has(channel.id) ? '' : 'not-applicable'}"><span class="channel-mark">${esc(channel.name.slice(0, 1))}</span><span><strong>${esc(channel.name)}</strong><small>${supportedIds.has(channel.id) ? 'Listing planned for this app' : `Not applicable to ${esc(app.platform)}`}</small></span><b class="requirement-status ${supportedIds.has(channel.id) ? 'unknown' : 'neutral'}">${supportedIds.has(channel.id) ? 'Not drafted' : 'N/A'}</b></div>`).join('')}</div>
     <div class="market-editor-heading"><div><span class="eyebrow">LOCALIZED METADATA</span><h3>Listing and search draft</h3></div><span class="market-language-tag">${esc(market.locale)}</span></div>
-    <div class="market-fields"><label>Store listing title<input data-market-field="title" value="${esc(fields.title)}" maxlength="90" placeholder="Write a natural title in ${esc(market.language)}"></label><label>Short description<textarea data-market-field="summary" rows="2" maxlength="240" placeholder="Explain the local value in ${esc(market.language)}">${esc(fields.summary)}</textarea></label><label>Local search phrases<input data-market-field="keywords" value="${esc(fields.keywords)}" maxlength="220" placeholder="Research words people use in ${esc(market.country)}"></label><label>Web SEO meta description<textarea data-market-field="seoDescription" rows="2" maxlength="240" placeholder="Describe the localized landing page">${esc(fields.seoDescription)}</textarea></label></div>
+    <div class="market-copy-generator"><label>Product summary for draft generation<textarea data-market-context rows="2" maxlength="500" placeholder="Describe what this app does in one sentence">${esc(app.marketSummary || '')}</textarea></label><button class="button-secondary" type="button" data-market-generate ${app.marketSummary?.trim() ? '' : 'disabled'}>Generate English starter copy</button><p>Uses only your summary and app name. Search phrases are guesses, not keyword research. English output for other languages must be translated and reviewed by a native speaker.</p></div>
+    <div class="market-fields"><label>Store listing title<input data-market-field="title" value="${esc(fields.title)}" maxlength="90" placeholder="Write a natural title in ${esc(market.language)}"></label><label>Short description<textarea data-market-field="summary" rows="2" maxlength="240" placeholder="Explain the local value in ${esc(market.language)}">${esc(fields.summary)}</textarea></label><label>Search phrase ideas (not researched)<input data-market-field="keywords" value="${esc(fields.keywords)}" maxlength="220" placeholder="Review and localize keyword ideas"></label><label>Web SEO meta description<textarea data-market-field="seoDescription" rows="2" maxlength="240" placeholder="Describe the localized landing page">${esc(fields.seoDescription)}</textarea></label></div>
     <div class="market-check-heading"><div><h3>Launch evidence</h3><p>Mark complete only after review for this market and channel.</p></div><span>${done}/${marketCheckItems.length}</span></div>
     <div class="market-checklist">${marketCheckItems.map(([key, label]) => `<label class="market-check"><input type="checkbox" data-market-check="${esc(key)}" ${current.checks[key] ? 'checked' : ''}><span>${esc(label)}</span><small>${current.checks[key] ? 'Reviewed' : 'Needs review'}</small></label>`).join('')}</div>
     <p class="market-disclaimer">Drafts are not translations or legal conclusions. Validate search demand with local research, have native speakers review copy, verify current platform rules, and attach source evidence before release.</p>`;
@@ -595,6 +596,14 @@ $('#market-list').addEventListener('click', event => {
   renderMarketStudio();
 });
 $('#market-work').addEventListener('input', event => {
+  const context = event.target.closest('[data-market-context]');
+  if (context) {
+    activeApp().marketSummary = context.value.slice(0, 500);
+    persistApps();
+    const generateButton = $('#market-work').querySelector('[data-market-generate]');
+    if (generateButton) generateButton.disabled = !activeApp().marketSummary.trim();
+    return;
+  }
   const field = event.target.closest('[data-market-field]');
   const plan = marketForApp();
   if (!field || !plan) return;
@@ -603,6 +612,24 @@ $('#market-work').addEventListener('input', event => {
   $('#market-fields-total').textContent = `${plansForApp().reduce((total, item) => total + countMarketFields(item), 0)} / ${plansForApp().length * 4}`;
   const row = $('#market-list').querySelector(`[data-market-id="${CSS.escape(plan.id)}"] .market-list-state`);
   if (row) row.innerHTML = `<strong>${countMarketChecks(plan)}/${marketCheckItems.length}</strong><small>${countMarketFields(plan)}/4 fields</small>`;
+});
+$('#market-work').addEventListener('click', event => {
+  if (!event.target.closest('[data-market-generate]')) return;
+  const app = activeApp();
+  const market = selectedMarketInfo();
+  const plan = marketForApp();
+  const brief = String(app.marketSummary || '').trim().replace(/\s+/g, ' ');
+  if (!brief || !market || !plan) return toast('Add a product summary before drafting market copy.');
+  const words = `${app.name} ${brief}`.toLowerCase().match(/[a-z0-9]+/g) || [];
+  const stop = new Set(['this', 'that', 'with', 'from', 'your', 'into', 'and', 'the', 'for', 'are', 'app', 'service', 'track', 'review']);
+  const ideas = [...new Set(words.filter(word => word.length > 3 && !stop.has(word)))].slice(0, 8);
+  plan.metadata.title = app.name.slice(0, 90);
+  plan.metadata.summary = brief.slice(0, 240);
+  plan.metadata.keywords = ideas.join(', ').slice(0, 220);
+  plan.metadata.seoDescription = `${app.name}: ${brief}`.slice(0, 240);
+  persistMarketPlans();
+  renderMarketStudio();
+  toast(`${market.locale} English starter draft created. Validate claims and search terms before use.`);
 });
 $('#market-work').addEventListener('change', event => {
   const check = event.target.closest('[data-market-check]');

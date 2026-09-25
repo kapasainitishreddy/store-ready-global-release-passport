@@ -16,9 +16,9 @@ Visual: one portfolio branching into per-app country/store plans, with missing w
 
 ## 3. The global launch desk
 
-Show the Markets page with US, India, and Japan plans for one selected sample app. Highlight store channels, locale-specific title/description/search fields, asset tasks, and JSON brief export.
+Show the Markets page with US, India, and Japan plans for one selected sample app. Highlight store channels, the app-summary-based English starter-copy generator, locale-specific title/description/search fields, asset tasks, and JSON brief export.
 
-Say clearly: the prototype tracks work but does not publish to stores, fetch keyword ranks, or translate automatically.
+Say clearly: the prototype can draft English copy from an app summary, but it does not publish to stores, fetch keyword ranks, translate automatically, or generate artwork.
 
 ## 4. Evidence-backed security and release checks
 

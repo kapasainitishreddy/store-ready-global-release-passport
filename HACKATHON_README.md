@@ -14,7 +14,7 @@ Small SaaS teams track several products, countries, and distribution channels at
 
 StoreReady gives each app a separate workspace for security and release evidence, plus country-by-country plans for Google Play, Apple App Store, Samsung Galaxy Store, web SEO, and GitHub Releases. Each plan stores locale-specific listing fields, search phrases, localized asset and privacy tasks, and a human-reviewed readiness checklist. A connected ReleaseProof demo reads one bounded local fixture and produces deterministic findings with file/rule/scanner evidence and explicit coverage gaps. Other apps stay **Not audited** until a scanner is connected. Its Bob handoff is designed for a real evidence-linked repository task and reviewed diff.
 
-This demo does not connect arbitrary repositories or store accounts, execute project scripts, fetch keyword rankings, translate copy, generate localized art, assess every jurisdiction, certify compliance, guarantee store approval, or publish an app. Market plans are local templates; unsupported scanner and policy coverage stays manual review or not assessed.
+This demo does not connect arbitrary repositories or store accounts, execute project scripts, fetch keyword rankings, translate copy, generate localized art, assess every jurisdiction, certify compliance, guarantee store approval, or publish an app. Its optional English starter-copy generator uses only the app name and a user-edited product summary; generated search phrases are heuristic suggestions, not researched keywords. Market plans are local templates; unsupported scanner and policy coverage stays manual review or not assessed.
 
 ## How IBM Bob 2.0 is used
 
@@ -38,7 +38,7 @@ flowchart LR
   Bob --> Review["Human diff review and revalidation"]
 ```
 
-Country plans are isolated by app and stored in browser local storage. The built-in market catalog provides six starter locales. Listing and search fields are editable planning drafts; this prototype does not generate translations or artwork, provide researched keyword volumes, or claim exhaustive country coverage.
+Country plans are isolated by app and stored in browser local storage. The built-in market catalog provides six starter locales. Listing and search fields are editable planning drafts. An optional generator creates English starter copy from the selected app's own summary; each draft must be translated and reviewed for its target market. It does not create artwork, provide researched keyword volumes, or claim exhaustive country coverage.
 
 The demo API only accepts a fixture selector (`broken` or `fixed`). It does not accept arbitrary paths or execute sample code. Existing StoreReady ZIP scanning retains its path validation, file/count/expansion limits, loopback-only development server, and security headers.
 
@@ -50,7 +50,7 @@ From the repository root, run:
 node apps/releaseproof/server.mjs
 ```
 
-Open [http://127.0.0.1:4173/](http://127.0.0.1:4173/). The dashboard audits `examples/releaseproof/broken-app`. Open **Markets** to review per-app country plans, fill locale-specific fields, mark reviewed launch evidence, and export a JSON brief. App-store and compliance tasks remain human-reviewed. Only the connected fixture runs source checks. Select **Prepare fix with IBM Bob** to create a prompt for a real Bob session. The fixture switch is sample data, not a code edit or Bob usage.
+Open [http://127.0.0.1:4173/](http://127.0.0.1:4173/). The dashboard audits `examples/releaseproof/broken-app`. Open **Markets** to review per-app country plans, generate an English starter draft from a product summary, edit locale-specific fields, mark reviewed launch evidence, and export a JSON brief. Generated search phrases are not keyword research; native translation, artwork, app-store, and compliance tasks remain human-reviewed. Only the connected fixture runs source checks. Select **Prepare fix with IBM Bob** to create a prompt for a real Bob session. The fixture switch is sample data, not a code edit or Bob usage.
 
 Run the measured fixture benchmark with:
 

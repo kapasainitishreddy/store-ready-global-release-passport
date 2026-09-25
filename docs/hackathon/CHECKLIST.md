@@ -20,7 +20,7 @@ Record the verified release-candidate commit before submission. The parent Store
 - [x] Broken fixture shows blockers and redacted source evidence.
 - [x] Workspace keeps app entries separate; apps without a scanner stay **Not audited**.
 - [x] Market plans are stored per app for country and locale; the demo tracks Play, App Store, Galaxy Store, web SEO, and GitHub release surfaces.
-- [x] Locale-specific listing fields, market review tasks, and JSON brief export work locally without sending repository data to a service.
+- [x] Locale-specific listing fields, English starter-copy generation, market review tasks, and JSON brief export work locally without sending repository data to a service. Generated search phrases are heuristic suggestions, not keyword research.
 - [ ] Add native translations, current per-store rule sources, and real keyword-volume data before claiming automated localization or market compliance.
 - [x] Compliance map uses manual-review and not-assessed states instead of unsupported passes.
 - [x] Reviewed demo diff switches to the separate fixed fixture; the app does not modify workspace files.
