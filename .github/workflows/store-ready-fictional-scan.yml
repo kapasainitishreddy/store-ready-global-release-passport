@@ -1,0 +1,71 @@
+name: StoreReady fictional-user QA
+
+on:
+  push:
+    branches: [qa/store-ready-fictional-scan-20261017]
+    paths:
+      - qa/store-ready-fictional-scan.mjs
+      - .github/workflows/store-ready-fictional-scan.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-ready-fake-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  isolated:
+    name: Pinned StoreReady ReleaseProof browser QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: kapasainitishreddy/store-ready-global-release-passport
+          ref: 55a4dcb8c3101181643dbc869acc85b83e08cc77
+          path: target-project
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate pinned source
+        run: |
+          mkdir -p qa-output
+          git rev-parse HEAD > qa-output/harness-commit.txt
+          git -C target-project rev-parse HEAD > qa-output/target-commit.txt
+          test "$(cat qa-output/target-commit.txt)" = 55a4dcb8c3101181643dbc869acc85b83e08cc77
+          node --check qa/store-ready-fictional-scan.mjs
+      - name: Install isolated browser tools
+        run: |
+          mkdir -p qa
+          (cd qa && npm install --no-save --no-fund --no-audit --ignore-scripts playwright@1.63.0)
+          (cd qa && npx playwright install --with-deps chromium)
+      - name: Run bounded release scanner unit tests
+        run: |
+          (cd target-project && npm test) > qa-output/source-tests.log 2>&1
+      - name: Exercise fixture and market UX without external requests
+        run: |
+          (cd target-project && npm start) > qa-output/server.log 2>&1 &
+          PID=$!
+          trap 'kill "$PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/ >/dev/null
+          set -o pipefail
+          node qa/store-ready-fictional-scan.mjs | tee qa-output/run.log
+          git -C target-project diff --exit-code
+      - name: Preserve scoped private evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: store-ready-fictional-scan-evidence
+          path: qa-output/
+          retention-days: 3
+          if-no-files-found: warn
